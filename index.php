@@ -42,7 +42,7 @@
                                     <input class="form-control" placeholder="Senha" name="password" type="password">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-success btn-block"><i class="fa fa-sign-in"></i> Login</button>
+                                <button class="btn btn-success btn-block"><i class="fa fa-sign-in"></i> Entrar</button>
                             </fieldset>
                         </form>
                     </div>
