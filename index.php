@@ -35,7 +35,7 @@
                     <div class="panel-body">
                         <form role="form">
                             <fieldset>
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <input class="form-control" placeholder="Usuário" name="username" type="text">
                                 </div>
                                 <div class="form-group">
