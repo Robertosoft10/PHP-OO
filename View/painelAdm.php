@@ -25,6 +25,8 @@
 
     <!-- Custom Fonts -->
     <link href="../Components/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Css extorno -->
+    <link href="../Components/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,10 +115,10 @@
                             <div class="row">
                             <a href="alunos.php">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-3x"></i>
+                                    <i  id="btn-link" class="fa fa-user fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">Alunos</div>
+                                    <div id="btn-painel" class="huge">Alunos</div>
                                 </div>
                             </div>
                         </div>
@@ -134,10 +136,10 @@
                             <div class="row">
                             <a href="professor.php">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-3x"></i>
+                                <i  id="btn-link" class="fa fa-user fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">Professores</div>
+                                    <div id="btn-painel" class="huge">Professores</div>
                                 </div>
                             </div>
                         </div>
@@ -155,10 +157,10 @@
                             <div class="row">
                             <a href="turmas.php">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-3x"></i>
+                                <i  id="btn-link" class="fa fa-users fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">Turmas</div>
+                                    <div id="btn-painel" class="huge">Turmas</div>
                                 </div>
                             </div>
                         </div>
