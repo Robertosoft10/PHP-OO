@@ -1,20 +1,19 @@
 <?php
 session_start();
 include_once '../Api/classProfessorDao.php';
-
-if(!empty($_POST['nomeProf'])){
-    
+    if(isset($_GET['profId'])){
     $objtProfessor = new Professor();
+    $objtProfessor->setProfId($_GET['profId']);
     $objtProfessor->setNomeProf($_POST['nomeProf']);
 
     $dao = new ProfessorDAO();
-    $dao->insertProfessor($objtProfessor);
+    $dao->updateProfessor($objtProfessor);
 
-$_SESSION['profSalvo'] = "Cadastro efetuado com sucesso!";
+$_SESSION['profAtualizado'] = "Registro atualizado com sucesso";
     header('location: ../View/professor.php');
 
 }else{
-   $_SESSION ['profNaoSalvo'] = "Falha no cadastro!  Campo obrigatório *";
+   $_SESSION ['profNaoAtualizado'] = "Falha registro não atualizado";
    header('location: ../View/professor.php');
 }
 ?>

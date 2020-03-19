@@ -2,12 +2,10 @@
 class Professor{
     private $profId;
     private $nomeProf;
-    private $disciplinaCod;
 
-    public function __construct($profId=0, $nomeProf="", $disciplinaCod=""){
+    public function __construct($profId=0, $nomeProf=""){
         $this->profId = $profId;
         $this->nomeProf = $nomeProf;
-        $this->disciplinaCod = $disciplinaCod;
     }
     public function setProfId($profId){
        $this->profId = $profId;
@@ -20,12 +18,6 @@ class Professor{
      }
      public function getNomeProf(){
          return $this->nomeProf;
-     }
-     public function setDisciplinaCod($disciplinaCod){
-        $this->disciplinaCod = $disciplinaCod;
-     }
-     public function getDisciplinaCod(){
-         return $this->disciplinaCod;
      }
 }
 ?>

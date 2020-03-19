@@ -3,6 +3,10 @@ session_start();
 require_once '../Api/classProfessorDao.php';
 $professorDAO = new ProfessorDAO();
 $professorList = $professorDAO->listProfessores();
+if(isset($_GET['profId'])){
+    $profId = $_GET['profId'];
+    $professor = $professorDAO->searchProfessor($profId);
+  }
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -102,76 +106,28 @@ $professorList = $professorDAO->listProfessores();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Professores</h3>
+                    <h3 class="page-header">Professor</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                <!-- alerts cadastro -->
-                <?php if(isset($_SESSION ['profNaoSalvo'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['profNaoSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['profNaoSalvo']); } ?>
-
-                <?php if(isset($_SESSION ['profSalvo'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['profSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['profSalvo']); } ?>
-
-                <!-- alert update -->
-                <?php if(isset($_SESSION ['profNaoAtualizado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['profNaoAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['profNaoAtualizado']); } ?>
-
-                <?php if(isset($_SESSION ['profAtualizado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['profAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['profAtualizado']); } ?>
-                 <!-- alert delete -->
-                 <?php if(isset($_SESSION ['profNaoDeletado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['profNaoDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['profNaoDeletado']); } ?>
-
-                <?php if(isset($_SESSION ['profDeletado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['profDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['profDeletado']); } ?>
-                <!-- deletar disci add -->
-                <?php if(isset($_SESSION ['discRemovido'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['discRemovido'];?>
-                </div>
-                <?php unset($_SESSION ['discRemovido']); } ?>
-                
-                <?php if(isset($_SESSION ['discNaoRemovido'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['discNaoRemovido'];?>
-                </div>
-                <?php unset($_SESSION ['discNaoRemovido']); } ?>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> 
-                            Cadastrar novo Professor (a)
+                            Editar dados do Professor
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <form role="form" action="../Controller/inserirProfessor.php" method="post">
+                                <form role="form" action="../Controller/atualizarProfessor.php?profId=<?= $professor->getProfId();?>" method="post">
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <label>Professor (a): *</label>
-                                            <input class="form-control" name="nomeProf">
+                                        <label>Professor: </label>
+                                            <input class="form-control" name="nomeProf"
+                                            value="<?php echo $professor->getNomeProf();?>">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Cadastro</button>
+                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
                                         </div>  
                                     </form>
                                 </div>
@@ -196,12 +152,12 @@ $professorList = $professorDAO->listProfessores();
                                 <thead>
                                     <tr>
                                         <th class="col-xs-2">ID</th>
-                                        <th class="col-xs-5">Professor (a)</th>
+                                        <th class="col-xs-5">Professor</th>
                                         <th class="col-xs-1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while($professor = array_shift($professorList )){?>
+                                <?php while($professor = array_shift($professorList)){?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $professor->getProfId();?></td>
                                         <td><?php echo $professor->getNomeProf();?></td>
