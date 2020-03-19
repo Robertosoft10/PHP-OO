@@ -1,13 +1,13 @@
 <?php 
 class Aluno{
     private $alunoId;
-    private $nome;
+    private $nomeAluno;
     private $turno;
     private $serie;
 
-    public function __construct($alunoId=0, $nome="", $turno="", $serie=""){
+    public function __construct($alunoId=0, $nomeAluno="", $turno="", $serie=""){
         $this->alunoId;
-        $this->nome;
+        $this->nomeAluno;
         $this->turno;
         $this->serie;
     }
@@ -17,11 +17,11 @@ class Aluno{
     public function getAlunoId(){
         return $this->alunoId;
     }
-    public function setNome($nome){
-        $this->nome = $nome;
+    public function setNomeAluno($nomeAluno){
+        $this->nomeAluno = $nomeAluno;
      }
-     public function getNome(){
-         return $this->nome;
+     public function getNomeAluno(){
+         return $this->nomeAluno;
      }
      public function setTurno($turno){
         $this->turno = $turno;

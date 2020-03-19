@@ -13,11 +13,11 @@
 				 }
         }	
         public function insertAluno($aluno){
-            $NomeAluno = $aluno->getNomeAluno();
+            $nomeAluno = $aluno->getNomeAluno();
             $turno = $aluno->getTurno();
             $serie = $aluno->getSerie();
 
-        $sql = "INSERT INTO alunos (NomeAlun, turno, serie)VALUES('$NomeAluno', '$turno', '$serie')";
+        $sql = "INSERT INTO alunos (nomeAluno, turno, serie)VALUES('$nomeAluno', '$turno', '$serie')";
         $this->conexao->query($sql);
         }
     }
