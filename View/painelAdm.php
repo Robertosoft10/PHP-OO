@@ -62,15 +62,6 @@
                     <a class="dropdown-toggle" href="../Api/logout.php">
                         <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -92,6 +83,9 @@
                         <li>
                             <a href="tumas"><i class="fa fa-users fa-fw"></i> Turmas</a>
                         </li>
+                        <li>
+                            <a href="notas.php"><i class="fa fa-file-text-o fa-fw"></i> Notas</a>
+                        </li>
                            
                     </ul>
                 </div>
@@ -108,8 +102,9 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <small id="nome-sist">Bem vindo(a)!  < Usuário >  Sistema Lançamento de Notas</small><br><br>
             <div class="row">
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -130,7 +125,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -151,7 +146,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-2 col-md-3">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -167,6 +162,27 @@
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                            <a href="notas.php">
+                                <div class="col-xs-3">
+                                <i  id="btn-link" class="fa fa-file-text-o fa-3x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div id="btn-painel" class="huge">Notas</div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="panel-footer">
+                                <span class="pull-left">Detalhes</span>
+                                <span class="pull-right"><i class="fa fa fa-file-text-o"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
