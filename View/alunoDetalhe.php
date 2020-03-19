@@ -96,97 +96,30 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Painel Admin</h3>
+                    <h3 class="page-header">Aluno</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <small id="nome-sist">Bem vindo(a)!  < Usuário >  Sistema Lançamento de Notas</small><br><br>
             <div class="row">
-                <div class="col-lg-2 col-md-3">
+            <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <div class="row">
-                            <a href="alunos.php">
-                                <div class="col-xs-3">
-                                    <i  id="btn-link" class="fa fa-user fa-3x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div id="btn-painel" class="huge">Alunos</div>
-                                </div>
-                            </div>
+                           Detalhe do Aluno
                         </div>
-                            <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
+                        <div class="panel-body">
                             <div class="row">
-                            <a href="professor.php">
-                                <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-user fa-3x"></i>
+                                <div class="col-lg-12" id="aluno-detalhe">
+                                    ID:<br>
+                                    Aluno:<br>
+                                    Série:<br>
+                                    Turno:<br>
+                                    <hr>
+                                    <div class="form-group col-lg-12 col-xs-12">
+                                    <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button>
+                                    <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button>
+                                    <div>
                                 </div>
-                                <div class="col-xs-9 text-right">
-                                    <div id="btn-painel" class="huge">Professores</div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                            <a href="turmas.php">
-                                <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-users fa-3x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div id="btn-painel" class="huge">Turmas</div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                            <a href="notas.php">
-                                <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-file-text-o fa-3x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div id="btn-painel" class="huge">Notas</div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
-                                <span class="pull-right"><i class="fa fa fa-file-text-o"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                         </div>
                         <!-- /.panel-footer -->
                     </div>
@@ -194,12 +127,8 @@
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+            </div>
+        <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="../Components/vendor/jquery/jquery.min.js"></script>
@@ -217,6 +146,16 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../Components/dist/js/sb-admin-2.js"></script>
+    <script src="../Components/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../Components/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../Components/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </body>
 
