@@ -1,3 +1,12 @@
+<?php
+require_once '../Api/classAlunoDao.php';
+$alunoDAO = new AlunoDAO();
+$alunos = $alunoDAO->listAlunos();
+if(isset($_GET['alunoId'])){
+  $alunoId = $_GET['alunoId'];
+  $aluno = $alunoDAO->searchAluno($alunoId);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -110,14 +119,16 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12" id="aluno-detalhe">
-                                    ID:<br>
-                                    Aluno:<br>
-                                    Série:<br>
-                                    Turno:<br>
+                                    ID: <?php echo $aluno->getAlunoid();?><br>
+                                    Aluno: <?php echo $aluno->getNomeAluno();?><br>
+                                    Série: <?php echo $aluno->getSerie();?><br>
+                                    Turno: <?php echo $aluno->getTurno();?><br>
                                     <hr>
                                     <div class="form-group col-lg-12 col-xs-12">
-                                    <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button>
-                                    <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button>
+                                    <a href="editarAluno.php?alunoId=<?= $aluno->getAlunoId();?>"> 
+                                    <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
+                                    <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>"> 
+                                    <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
                                     <div>
                                 </div>
                         </div>

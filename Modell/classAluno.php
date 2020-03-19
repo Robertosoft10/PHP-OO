@@ -6,10 +6,10 @@ class Aluno{
     private $serie;
 
     public function __construct($alunoId=0, $nomeAluno="", $turno="", $serie=""){
-        $this->alunoId;
-        $this->nomeAluno;
-        $this->turno;
-        $this->serie;
+        $this->alunoId = $alunoId;
+        $this->nomeAluno = $nomeAluno;
+        $this->turno = $turno;
+        $this->serie = $serie;
     }
     public function setAlunoId($alunoId){
        $this->alunoId = $alunoId;

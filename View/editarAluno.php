@@ -1,9 +1,12 @@
 <?php
-session_start();
 require_once '../Api/classAlunoDao.php';
 $alunoDAO = new AlunoDAO();
 $alunos = $alunoDAO->listAlunos();
- ?>
+if(isset($_GET['alunoId'])){
+  $alunoId = $_GET['alunoId'];
+  $aluno = $alunoDAO->searchAluno($alunoId);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -102,75 +105,39 @@ $alunos = $alunoDAO->listAlunos();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Alunos</h3>
+                    <h3 class="page-header">Aluno</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                <!-- alerts -->
-                <?php if(isset($_SESSION ['alunoNaoSalvo'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['alunoNaoSalvo']); } ?>
-
-                <?php if(isset($_SESSION ['alunoSalvo'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['alunoSalvo']); } ?>
-
-                <!-- alert update -->
-                <?php if(isset($_SESSION ['alunoNaoAtualizado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['alunoNaoAtualizado']); } ?>
-
-                <?php if(isset($_SESSION ['alunoAtualizado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['alunoAtualizado']); } ?>
-                 <!-- alert delete -->
-                 <?php if(isset($_SESSION ['alunoNaoDeletado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['alunoNaoDeletado']); } ?>
-
-                <?php if(isset($_SESSION ['alunoDeletado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['alunoDeletado']); } ?>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> 
-                            Cadastrar novo Aluno
+                            Editar dados do Aluno
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <form role="form" action="../Controller/inserirAluno.php" method="post">
+                                <form role="form" action="../Controller/atualizarAluno.php?alunoId=<?= $aluno->getAlunoId();?>" method="post">
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <label>Aluno: *</label>
-                                            <input class="form-control" name="nomeAluno">
+                                        <label>Aluno:</label>
+                                            <input class="form-control" name="nomeAluno"
+                                            value="<?php echo $aluno->getNomeAluno();?>">
                                         </div>
                                         <div class="form-group col-lg-6 col-xs-6">
-                                        <label>Turno: *</label>
+                                        <label>Turno: </label>
                                             <select class="form-control"  name="turno">
-                                            <option></option>
+                                            <option><?php echo $aluno->getTurno();?></option>
                                                 <option>Manhã</option>
                                                 <option>Tarde</option>
                                                 <option>Noite</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-xs-6">
-                                        <label>Série: *</label>
+                                        <label>Série: </label>
                                             <select class="form-control" name="serie">
-                                                <option></option>
+                                                <option><?php echo $aluno->getSerie();?></option>
                                                 <option><strong>Educação Infantil</strong></option>
                                                 <option>Infantil</option>
                                                 <option>Infantil G-1</option>
@@ -198,7 +165,7 @@ $alunos = $alunoDAO->listAlunos();
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Cadastro</button>
+                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
                                         </div>  
                                     </form>
                                 </div>
