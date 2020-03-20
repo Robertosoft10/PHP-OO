@@ -9,7 +9,6 @@ if(isset($_GET['alunoId'])){
   $alunoId = $_GET['alunoId'];
   $aluno = $alunoDAO->searchAluno($alunoId);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,7 +72,7 @@ if(isset($_GET['alunoId'])){
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i>  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -96,7 +95,7 @@ if(isset($_GET['alunoId'])){
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -106,7 +105,7 @@ if(isset($_GET['alunoId'])){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Aluno</h3>
+                    <h3 class="page-header">Detalhe do Aluno</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -114,38 +113,25 @@ if(isset($_GET['alunoId'])){
             <div class="row">
             <div class="col-lg-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Detalhe do Aluno: <?php echo $aluno->getNomeAluno();?>
+                        <div class="panel-heading" id="nome-aluno">
+                           Aluno: <?php echo $aluno->getNomeAluno();?>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12" id="aluno-detalhe">
                                     ID: <?php echo $aluno->getAlunoid();?>,
-                                    Série: <?php echo $aluno->getSerie();?>, 
+                                    Série: <?php echo $aluno->getSerie();?>,
                                     Turno: <?php echo $aluno->getTurno();?>
                                     <hr>
                                     <div class="form-group col-lg-12 col-xs-12">
-                                    <a href="editarAluno.php?alunoId=<?= $aluno->getAlunoId();?>"> 
+                                    <a href="editarAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
                                     <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
-                                    <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>"> 
+                                    <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
                                     <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
                                     <div>
                                 </div>
                                 <hr>
-                                <?php
-                                /* cadastrar nota */
-                                @$aluno = $_GET['alunoId'];
-                                @$professor = $_POST['professor'];
-                                @$disciplina = $_POST['disciplina'];
-                                @$bimestre = $_POST['bimestre'];
-                                @$nota = $_POST['nota'];
-                                $sql = "INSERT INTO notas(aluno, professor, disciplina, bimestre, nota)VALUES('$aluno', '$professor', '$disciplina', '$bimestre', '$nota')";
-                                $execute = mysqli_query($conexao, $sql);
-                                if($execute == true){
-                                    $_SESSION['disciOK'] = "Disciplina adicionada com sucesso";
-                                }
-                                ?>
-                                <form role="form" action="?" method="post">
+                                <form role="form" action="../Controller/inserirNota.php?alunoId=<?= $aluno->getAlunoId();?>" method="post">
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <small  id="form-nota">Preofessor: *</small>
                                         <select class="form-control"  name="professor">
@@ -177,9 +163,9 @@ if(isset($_GET['alunoId'])){
                                         <div class="form-group col-lg-4 col-xs-4">
                                             <br>
                                         <button type="submit" class="btn btn-success">Salvar Nota</button>
-                                        </div>  
+                                        </div>
                                     </form>
-                                
+
                         </div>
                         <!-- /.panel-footer -->
                     </div>

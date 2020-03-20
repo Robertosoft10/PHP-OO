@@ -93,7 +93,7 @@ if(isset($_GET['alunoId'])){
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -111,7 +111,7 @@ if(isset($_GET['alunoId'])){
             <div class="row">
             <div class="col-lg-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading"> 
+                        <div class="panel-heading">
                             Editar dados do Aluno
                         </div>
                         <div class="panel-body">
@@ -164,7 +164,7 @@ if(isset($_GET['alunoId'])){
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
                                         <button type="submit" class="btn btn-success">Salvar Alterações</button>
-                                        </div>  
+                                        </div>
                                     </form>
                                 </div>
                         </div>
@@ -180,7 +180,7 @@ if(isset($_GET['alunoId'])){
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                           Lista de Alunos 
+                           Lista de Alunos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -200,7 +200,7 @@ if(isset($_GET['alunoId'])){
                                         <td><?php echo $aluno->getNomeAluno();?></td>
                                         <td><?php echo $aluno->getSerie();?></td>
                                         <td>
-                                        <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>"> 
+                                        <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>">
                                         <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>

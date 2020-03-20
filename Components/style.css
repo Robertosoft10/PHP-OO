@@ -5,7 +5,7 @@
 }
 #btn-painel{
     color: #ffffff;
-    font-size: 14pt;
+    font-size: 13pt;
 }
 #nome-sist{
     font-size: 14pt;
@@ -19,4 +19,13 @@
 }
 #form-nota{
     font-size: 12pt;
+}
+#nome-aluno{
+  font-size: 13pt;
+}
+#btn-modal-nota{
+  width: 30%;
+}
+#modal-tamanho{
+  margin-top: 10%;
 }
