@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../Api/secury.php';
 require_once '../Api/classDisciplinaDao.php';
 $disciplinaDAO = new DisciplinaDAO();
 $disciplina = $disciplinaDAO->listDisciplina();
@@ -85,9 +86,6 @@ $disciplina = $disciplinaDAO->listDisciplina();
                         </li>
                         <li>
                             <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
-                        </li>
-                        <li>
-                            <a href="notas.php"><i class="fa fa-file-text-o fa-fw"></i> Notas</a>
                         </li>
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>

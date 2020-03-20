@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../Api/secury.php';
 include_once '../Api/conexao.php';
 require_once '../Api/classAlunoDao.php';
 $alunoDAO = new AlunoDAO();
@@ -72,7 +73,7 @@ if(isset($_GET['alunoId'])){
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i> Logado:  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -91,9 +92,6 @@ if(isset($_GET['alunoId'])){
                         </li>
                         <li>
                             <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
-                        </li>
-                        <li>
-                            <a href="notas.php"><i class="fa fa-file-text-o fa-fw"></i> Notas</a>
                         </li>
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>

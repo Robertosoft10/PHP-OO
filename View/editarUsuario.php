@@ -1,14 +1,14 @@
 <?php
 session_start();
 include_once '../Api/secury.php';
-require_once '../Api/classProfessorDao.php';
-$professorDAO = new ProfessorDAO();
-$professorList = $professorDAO->listProfessores();
-if(isset($_GET['profId'])){
-    $profId = $_GET['profId'];
-    $professor = $professorDAO->searchProfessor($profId);
-  }
- ?>
+require_once '../Api/classUsuarioDao.php';
+$usuarioDAO = new UsuarioDAO();
+$usuarios = $usuarioDAO->listUsuarios();
+if(isset($_GET['userId'])){
+  $userId = $_GET['userId'];
+  $usuario = $usuarioDAO->searchUsuario($userId);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -71,7 +71,7 @@ if(isset($_GET['profId'])){
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -104,7 +104,7 @@ if(isset($_GET['profId'])){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Professor</h3>
+                    <h3 class="page-header">Usuários</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -113,18 +113,53 @@ if(isset($_GET['profId'])){
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading"> 
-                            Editar dados do Professor
+                            Editar dados do Usuário
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <form role="form" action="../Controller/atualizarProfessor.php?profId=<?= $professor->getProfId();?>" method="post">
-                                        <div class="form-group col-lg-12 col-xs-12">
-                                        <label>Professor: </label>
-                                            <input class="form-control" name="nomeProf"
-                                            value="<?php echo $professor->getNomeProf();?>">
+                                <form role="form" action="../Controller/atualizarUsuario.php?userId=<?= $usuario->getUserId();?>" method="post">
+                                        <div class="form-group col-lg-3 col-xs-3">
+                                        <label>Nome: </label>
+                                            <input class="form-control" name="nomeUser"
+                                            value="<?php echo $usuario->getNomeUser();?>">
                                         </div>
-                                        <div class="form-group col-lg-12 col-xs-12">
+                                        <div class="form-group col-lg-5 col-xs-5">
+                                        <label>E-mail: </label>
+                                            <input class="form-control" name="email"
+                                            value="<?php echo $usuario->getEmail();?>">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Senha atual ou nova senha: </label>
+                                            <input class="form-control"  type="password" name="password" required="">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Tipo: </label>
+                                        <select class="form-control"  name="tipo">
+                                            <option><?php echo $usuario->getTipo();?></option>
+                                                <option  value="Admin">Usuário Admim</option>
+                                                <option  value="User">Usuário Comum</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Status: </label>
+                                        <select class="form-control"  name="status">
+                                        <?php 
+                                        $usuario->getStatus();
+                                        if($usuario->getStatus() == 1){
+                                          $user = 'Ativo';
+                                        }else{
+                                            $user = 'Inativo';
+                                        }
+                                        ?>
+                                            <option><?php echo $user;?></option>
+                                                <option value="1">Ativo</option>
+                                                <option value="0">Inativo</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <br>
                                         <button type="submit" class="btn btn-success">Salvar Alterações</button>
                                         </div>  
                                     </form>
@@ -142,26 +177,43 @@ if(isset($_GET['profId'])){
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                           Lista de Professores 
+                           Lista de Usuários 
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th class="col-xs-2">ID</th>
-                                        <th class="col-xs-5">Professor</th>
-                                        <th class="col-xs-1"></th>
+                                        <th>Usuário</th>
+                                        <th>E-mail</th>
+                                        <th>Tipo</th>
+                                        <th> Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php while($professor = array_shift($professorList)){?>
+                                    <?php while($usuario = array_shift($usuarios)){?>
                                     <tr class="odd gradeX">
-                                        <td><?php echo $professor->getProfId();?></td>
-                                        <td><?php echo $professor->getNomeProf();?></td>
+                                        <td><?php echo $usuario->getNomeUser();?></td>
+                                        <td><?php echo $usuario->getEmail();?></td>
+                                        <td><?php echo $usuario->getTipo();?></td>
+                                        <?php 
+                                        $usuario->getStatus();
+                                        if($usuario->getStatus() == 1){
+                                          $user = '<button class="btn btn-success btn-xs">On</button>';
+                                        }else{
+                                            $user = '<button class="btn btn-danger btn-xs">Off</button>';
+                                        }
+                                        ?>
                                         <td>
-                                        <a href="professorDetalhe.php?profId=<?= $professor->getProfId();?>"> 
-                                        <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <?php echo $user;?>
+                                        
+                                        </td>
+                                        <td>
+                                        <a href="editarUsuario.php?UserId=<?= $usuario->getUserId();?>"> 
+                                        <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <a href="../Controller/excluirUser.php?UserId=<?= $usuario->getUserId();?>"> 
+                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once '../Api/classAlunoDao.php';
-$alunoDAO = new AlunoDAO();
-$alunos = $alunoDAO->listAlunos();
+include_once '../Api/secury.php';
+require_once '../Api/classUsuarioDao.php';
+$usuarioDAO = new UsuarioDAO();
+$usuarios = $usuarioDAO->listUsuarios();
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,7 +67,7 @@ $alunos = $alunoDAO->listAlunos();
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -87,9 +88,6 @@ $alunos = $alunoDAO->listAlunos();
                             <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
                         </li>
                         <li>
-                            <a href="notas.php"><i class="fa fa-file-text-o fa-fw"></i> Notas</a>
-                        </li>
-                        <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
                            
@@ -102,7 +100,7 @@ $alunos = $alunoDAO->listAlunos();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Alunos</h3>
+                    <h3 class="page-header">Usuários</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -110,95 +108,82 @@ $alunos = $alunoDAO->listAlunos();
             <div class="row">
             <div class="col-lg-12">
                 <!-- alerts -->
-                <?php if(isset($_SESSION ['alunoNaoSalvo'])){?>
+                <?php if(isset($_SESSION ['userExiste'])){?>
                 <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoSalvo'];?>
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['userExiste'];?>
                 </div>
-                <?php unset($_SESSION ['alunoNaoSalvo']); } ?>
+                <?php unset($_SESSION ['userExiste']); } ?>
 
-                <?php if(isset($_SESSION ['alunoSalvo'])){?>
+                <?php if(isset($_SESSION ['userSalvo'])){?>
                 <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoSalvo'];?>
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['userSalvo'];?>
                 </div>
-                <?php unset($_SESSION ['alunoSalvo']); } ?>
+                <?php unset($_SESSION ['userSalvo']); } ?>
 
                 <!-- alert update -->
-                <?php if(isset($_SESSION ['alunoNaoAtualizado'])){?>
+                <?php if(isset($_SESSION ['userNaoAtualizado'])){?>
                 <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoAtualizado'];?>
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['userNaoAtualizado'];?>
                 </div>
-                <?php unset($_SESSION ['alunoNaoAtualizado']); } ?>
+                <?php unset($_SESSION ['userNaoAtualizado']); } ?>
 
-                <?php if(isset($_SESSION ['alunoAtualizado'])){?>
+                <?php if(isset($_SESSION ['userAtualizado'])){?>
                 <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoAtualizado'];?>
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['userAtualizado'];?>
                 </div>
-                <?php unset($_SESSION ['alunoAtualizado']); } ?>
+                <?php unset($_SESSION ['userAtualizado']); } ?>
                  <!-- alert delete -->
-                 <?php if(isset($_SESSION ['alunoNaoDeletado'])){?>
+                 <?php if(isset($_SESSION ['userNaoDeletado'])){?>
                 <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoDeletado'];?>
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['userNaoDeletado'];?>
                 </div>
-                <?php unset($_SESSION ['alunoNaoDeletado']); } ?>
+                <?php unset($_SESSION ['userNaoDeletado']); } ?>
 
-                <?php if(isset($_SESSION ['alunoDeletado'])){?>
+                <?php if(isset($_SESSION ['userDeletado'])){?>
                 <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoDeletado'];?>
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['userDeletado'];?>
                 </div>
-                <?php unset($_SESSION ['alunoDeletado']); } ?>
+                <?php unset($_SESSION ['userDeletado']); } ?>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> 
-                            Cadastrar novo Aluno
+                            Cadastrar novo Usuário
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <form role="form" action="../Controller/inserirAluno.php" method="post">
-                                        <div class="form-group col-lg-12 col-xs-12">
-                                        <label>Aluno: *</label>
-                                            <input class="form-control" name="nomeAluno">
+                                <form role="form" action="../Controller/inserirUsuario.php" method="post">
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Nome: *</label>
+                                            <input class="form-control" name="nomeUser"  required="">
                                         </div>
-                                        <div class="form-group col-lg-6 col-xs-6">
-                                        <label>Turno: *</label>
-                                            <select class="form-control"  name="turno">
+                                        <div class="form-group col-lg-5 col-xs-5">
+                                        <label>E-mail: *</label>
+                                            <input class="form-control" name="email"   required="">
+                                        </div>
+                                        <div class="form-group col-lg-3 col-xs-3">
+                                        <label>Senha: *</label>
+                                            <input class="form-control"  type="password" name="password"   required="">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Tipo: *</label>
+                                        <select class="form-control"  name="tipo"   required="">
                                             <option></option>
-                                                <option>Manhã</option>
-                                                <option>Tarde</option>
-                                                <option>Noite</option>
+                                                <option  value="Admin">Usuário Admim</option>
+                                                <option  value="User">Usuário Comum</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-6 col-xs-6">
-                                        <label>Série: *</label>
-                                            <select class="form-control" name="serie">
-                                                <option></option>
-                                                <option><strong>Educação Infantil</strong></option>
-                                                <option>Infantil</option>
-                                                <option>Infantil G-1</option>
-                                                <option>Infantil G-2</option>
-                                                <option>Infantil G-3</option>
-                                                <option>Infantil G-4</option>
-                                                <option>Infantil G-5</option>
-                                                <option><strong>Ensino Fundamental I</strong></option>
-                                                <option>1º Ano</option>
-                                                <option>2º Ano</option>
-                                                <option>3º Ano</option>
-                                                <option>4º Ano</option>
-                                                <option>5º Ano</option>
-                                                <option><strong>Ensino Fundamental II</strong></option>
-                                                <option>6º Ano</option>
-                                                <option>7º Ano</option>
-                                                <option>8º Ano</option>
-                                                <option>9º Ano</option>
-                                                <option><strong>Ensino Médio</strong></option>
-                                                <option>1º Ano Ensino Médio</option>
-                                                <option>2º Ano Ensino Médio</option>
-                                                <option>3º Ano Ensino Médio</option>
-                                                <option>1º Ano Ensino Médio - Formação Téc</option>
-                                                <option>2º Ano Ensino Médio - Formação Téc</option>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <label>Status: *</label>
+                                        <select class="form-control"  name="status"   required="">
+                                            <option></option>
+                                                <option value="1">Ativo</option>
+                                                <option value="0">Inativo</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Cadastro</button>
+                                        
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <br>
+                                        <button type="submit" class="btn btn-success">Cadastrar Usuário</button>
                                         </div>  
                                     </form>
                                 </div>
@@ -215,28 +200,43 @@ $alunos = $alunoDAO->listAlunos();
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                           Lista de Alunos 
+                           Lista de Usuários 
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th class="col-xs-2">ID</th>
-                                        <th class="col-xs-5">Aluno</th>
-                                        <th class="col-xs-3"> Série</th>
-                                        <th class="col-xs-1"></th>
+                                        <th>Usuário</th>
+                                        <th>E-mail</th>
+                                        <th>Tipo</th>
+                                        <th> Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while($aluno = array_shift($alunos)){?>
+                                    <?php while($usuario = array_shift($usuarios)){?>
                                     <tr class="odd gradeX">
-                                        <td><?php echo $aluno->getAlunoId();?></td>
-                                        <td><?php echo $aluno->getNomeAluno();?></td>
-                                        <td><?php echo $aluno->getSerie();?></td>
+                                        <td><?php echo $usuario->getNomeUser();?></td>
+                                        <td><?php echo $usuario->getEmail();?></td>
+                                        <td><?php echo $usuario->getTipo();?></td>
+                                        <?php 
+                                        $usuario->getStatus();
+                                        if($usuario->getStatus() == 1){
+                                          $user = '<button class="btn btn-success btn-xs">On</button>';
+                                        }else{
+                                            $user = '<button class="btn btn-danger btn-xs">Off</button>';
+                                        }
+                                        ?>
                                         <td>
-                                        <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>"> 
-                                        <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <?php echo $user;?>
+                                        
+                                        </td>
+                                        <td>
+                                        <a href="editarUsuario.php?userId=<?= $usuario->getUserId();?>"> 
+                                        <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <a href="../Controller/excluirUser.php?userId=<?= $usuario->getUserId();?>"> 
+                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

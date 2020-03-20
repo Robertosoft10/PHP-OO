@@ -1,23 +1,9 @@
 <?php
 session_start();
 include_once '../Api/secury.php';
-include_once '../Api/conexao.php';
-require_once '../Api/classProfessorDao.php';
-$professorDAO = new ProfessorDAO();
-$professorList = $professorDAO->listProfessores();
-if(isset($_GET['profId'])){
-    $profId = $_GET['profId'];
-    $professor = $professorDAO->searchProfessor($profId);
-  }
-@$profCodigo = $_GET['profId'];
-@$disciCodigo = $_POST['disciCodigo'];
-$sql = "INSERT INTO prof_disciplina(profCodigo, disciCodigo)VALUES('$profCodigo', '$disciCodigo')";
-$execute = mysqli_query($conexao, $sql);
-if($execute == true){
-    $_SESSION['disciOK'] = "Disciplina adicionada com sucesso";
-}
-$sql = "SELECT * FROM prof_disciplina";
-$consulta = mysqli_query($conexao, $sql);
+require_once '../Api/classDisciplinaDao.php';
+$disciplinaDAO = new DisciplinaDAO();
+$disciplina = $disciplinaDAO->listDisciplina();
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,7 +67,7 @@ $consulta = mysqli_query($conexao, $sql);
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -114,73 +100,46 @@ $consulta = mysqli_query($conexao, $sql);
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Professor</h3>
+                    <h3 class="page-header">Admin Usuários</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
+                <!-- alerts erro -->
+                <?php if(isset($_SESSION ['adminFazio'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['adminFazio'];?>
+                </div>
+                <?php unset($_SESSION ['adminFazio']); } ?>
+
+                 <!-- alerts erro -->
+                 <?php if(isset($_SESSION ['adminErro'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['adminErro'];?>
+                </div>
+                <?php unset($_SESSION ['adminErro']); } ?>
+
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Detalhe do Professor
+                        <div class="panel-heading"> 
+                            Área restrita para usuário administrador
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12" id="aluno-detalhe">
-                                    ID: <?php echo $professor->getProfId();?><br>
-                                    Professor (a): <?php echo $professor->getNomeProf();?><br>
-                                    <hr>
-                                    <div class="form-group col-lg-12 col-xs-12">
-                                    <a href="editarProfessor.php?profId=<?= $professor->getProfId();?>"> 
-                                    <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
-                                    <a href="../Controller/excluirProfessor.php?profId=<?= $professor->getProfId();?>"> 
-                                    <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
-                                    <div>
-                                    <hr>
-                                    <!-- alert cadastro -->
-                                    <?php if(isset($_SESSION ['disciOK'])){?>
-                                    <div class="alert alert-success" role="alert">
-                                    <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciOK'];?>
-                                    </div>
-                                    <?php unset($_SESSION ['disciOK']); } ?>
-                                    <?php
-                                    /* listar disciplina cadastrada*/
-                                    require_once '../Api/classDisciplinaDao.php';
-                                    $disciplinaDAO = new DisciplinaDAO();
-                                    $disciplinalist = $disciplinaDAO->listDisciplina();
-                                    ?>
-                                    <form aciton="?profId=<?= $professor->getProfId();?>" method="post">
-                                    <small>Inserir Disciplinas Lecionadas</small>
-                                    <div class="input-group custom-search-form">
-                                        <select type="text" class="form-control" name="disciCodigo">
-                                            <option></option>
-                                            <?php while($objtDisci = array_shift($disciplinalist)){?>
-                                          <option value="<?php echo $objtDisci->getDisciId();?>">
-                                          <?php echo $objtDisci->getDisciplina();?>
-                                            </option>
-                                            <?php } ?>
-                                        </select>
-                                        <span class="input-group-btn">
-                                        <button class="btn btn-success"> Salvar Disciplina</button>
-                                    </span>
-                                    </div>
+                                <div class="col-lg-12">
+                                <form role="form" action="../Api/veryUserAdm.php" method="post">
+                                        <div class="form-group col-lg-6 col-xs-6">
+                                        <input class="form-control" type="email"  name="email" placeholder="E-mail">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-xs-6">
+                                        <input class="form-control" type="password"  name="password" placeholder="Senha">
+                                        </div>
+                                        <div class="form-group col-lg-12 col-xs-12">
+                                        <button type="submit" class="btn btn-success"> Continuar</button>
+                                        </div>  
                                     </form>
                                 </div>
-                                <br>
-                            Lista de Disciplinas Lecionadas:<br>
-                            <table width="100%" class="table table-striped table-bordered table-hover">
-                            <?php while($linhaDisc = mysqli_fetch_array($consulta)){?>
-                                    <tr class="odd gradeX">
-                                        <td class="col-xs-11"><?php echo $linhaDisc['disciCodigo'];?></td>
-                                        <td class="col-xs-1">
-                                        <a href="../Controller/excluirDiscProf.php?prof_dc_Id=<?= $linhaDisc['prof_dc_Id'];?>"> 
-                                        <button class="btn btn-danger btn-sm"><i  class="fa  fa-trash"></i> </button></a>
-                                    </td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
                         </div>
                         <!-- /.panel-footer -->
                     </div>
@@ -189,7 +148,8 @@ $consulta = mysqli_query($conexao, $sql);
                 <!-- /.col-lg-4 -->
             </div>
             </div>
-        <!-- /#wrapper -->
+            <!-- /.row -->
+        
 
     <!-- jQuery -->
     <script src="../Components/vendor/jquery/jquery.min.js"></script>

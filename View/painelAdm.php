@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include_once '../Api/secury.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -60,7 +64,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -81,9 +85,6 @@
                             <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
                         </li>
                         <li>
-                            <a href="notas.php"><i class="fa fa-file-text-o fa-fw"></i> Notas</a>
-                        </li>
-                        <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
                            
@@ -101,7 +102,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <small id="nome-sist">Bem vindo(a)!  < Usuário >  Sistema Lançamento de Notas</small><br><br>
+            <small id="nome-sist">Bem vindo(a)!  <?php echo $_SESSION['nomeUser'];?>  Sistema Lançamento de Notas</small><br><br>
             <div class="row">
                 <div class="col-lg-2 col-md-3">
                     <div class="panel panel-primary">
@@ -170,12 +171,12 @@
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
-                            <a href="notas.php">
+                            <a href="admUser.php">
                                 <div class="col-xs-3">
                                 <i  id="btn-link" class="fa fa-file-text-o fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div id="btn-painel" class="huge">Notas</div>
+                                    <div id="btn-painel" class="huge">Usuários</div>
                                 </div>
                             </div>
                         </div>

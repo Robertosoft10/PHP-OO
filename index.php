@@ -24,7 +24,10 @@
     <!-- Custom Fonts -->
     <link href="Components/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-
+<?php
+ unset($_SESSION['email'],
+ $_SESSION['password']);
+?>
 <body>
     <div class="container">
         <div class="row">
@@ -34,10 +37,27 @@
                         <h3 class="panel-title">Acessar  Sistema</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="Api/login.php" method="post">
                             <fieldset>
+                            <?php if(isset($_SESSION ['loginVazio'])){?>
+                            <div class="alert alert-danger" role="alert">
+                            <i class="fa fa-check"></i>  <?php echo $_SESSION ['loginVazio'];?>
+                            </div>
+                            <?php unset($_SESSION ['loginVazio']); } ?>
+
+                            <?php if(isset($_SESSION ['loginIncorreto'])){?>
+                            <div class="alert alert-danger" role="alert">
+                            <i class="fa fa-check"></i>  <?php echo $_SESSION ['loginIncorreto'];?>
+                            </div>
+                            <?php unset($_SESSION ['loginIncorreto']); } ?>
+
+                            <?php if(isset($_SESSION ['secury'])){?>
+                            <div class="alert alert-danger" role="alert">
+                            <i class="fa fa-check"></i>  <?php echo $_SESSION ['secury'];?>
+                            </div>
+                            <?php unset($_SESSION ['secury']); } ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Usuário" name="username" type="text">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Senha" name="password" type="password">
