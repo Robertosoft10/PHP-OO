@@ -1,17 +1,17 @@
 <?php
-    require_once 'classConexao.php';
+  require_once 'classConexao.php';
 	include '../Modell/classUsuario.php';
-	
+
 	class UsuarioDAO{
-		
+
 		private $conexao;
-		
+
 		public function __construct(){
 			$this->conexao = new Conexao();
 				 if($this->conexao->conectar() == false){
-				 	 echo "Não conectou!" . mysql_error();	
+				 	 echo "Não conectou!" . mysql_error();
 				 }
-		}	
+		}
 
         public function insertUsuario($usuario){
             $nomeUser = $usuario->getNomeUser();
@@ -23,7 +23,7 @@
             $sql = "INSERT INTO usuarios (nomeUser, email, password, tipo, status)VALUES('$nomeUser', '$email', '$password', '$tipo', '$status')";
             $this->conexao->query($sql);
         }
-        
+
         public function listUsuarios(){
             $consulta = $this->conexao->query("SELECT * FROM usuarios");
 			    $arrayUsuarios = array();
@@ -33,9 +33,9 @@
 			}
 			return $arrayUsuarios;
         }
-        
+
         public function searchUsuario($userId){
-            $linha = $this->conexao->buscarRegistro("SELECT * FROM usuarios WHERE userId = '$userId'"); 
+            $linha = $this->conexao->buscarRegistro("SELECT * FROM usuarios WHERE userId = '$userId'");
             $usuario = new Usuario($linha['userId'], $linha['nomeUser'], $linha['email'], $linha['password'], $linha['tipo'], $linha['status']);
             return $usuario;
         }
