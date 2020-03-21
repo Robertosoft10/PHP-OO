@@ -90,7 +90,7 @@ $usuarios = $usuarioDAO->listUsuarios();
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -145,7 +145,7 @@ $usuarios = $usuarioDAO->listUsuarios();
                 </div>
                 <?php unset($_SESSION ['userDeletado']); } ?>
                     <div class="panel panel-primary">
-                        <div class="panel-heading"> 
+                        <div class="panel-heading">
                             Cadastrar novo Usuário
                         </div>
                         <div class="panel-body">
@@ -180,11 +180,11 @@ $usuarios = $usuarioDAO->listUsuarios();
                                                 <option value="0">Inativo</option>
                                             </select>
                                         </div>
-                                        
+
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <br>
                                         <button type="submit" class="btn btn-success">Cadastrar Usuário</button>
-                                        </div>  
+                                        </div>
                                     </form>
                                 </div>
                         </div>
@@ -200,7 +200,7 @@ $usuarios = $usuarioDAO->listUsuarios();
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                           Lista de Usuários 
+                           Lista de Usuários
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -220,7 +220,7 @@ $usuarios = $usuarioDAO->listUsuarios();
                                         <td><?php echo $usuario->getNomeUser();?></td>
                                         <td><?php echo $usuario->getEmail();?></td>
                                         <td><?php echo $usuario->getTipo();?></td>
-                                        <?php 
+                                        <?php
                                         $usuario->getStatus();
                                         if($usuario->getStatus() == 1){
                                           $user = '<button class="btn btn-success btn-xs">On</button>';
@@ -230,12 +230,12 @@ $usuarios = $usuarioDAO->listUsuarios();
                                         ?>
                                         <td>
                                         <?php echo $user;?>
-                                        
+
                                         </td>
                                         <td>
-                                        <a href="editarUsuario.php?userId=<?= $usuario->getUserId();?>"> 
+                                        <a href="editarUsuario.php?userId=<?= $usuario->getUserId();?>">
                                         <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
-                                        <a href="../Controller/excluirUser.php?userId=<?= $usuario->getUserId();?>"> 
+                                        <a href="../Controller/excluirUser.php?userId=<?= $usuario->getUserId();?>">
                                         <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>

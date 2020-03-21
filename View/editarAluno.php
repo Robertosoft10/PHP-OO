@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../Api/secury.php';
 require_once '../Api/classAlunoDao.php';
 $alunoDAO = new AlunoDAO();

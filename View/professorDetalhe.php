@@ -16,7 +16,10 @@ $execute = mysqli_query($conexao, $sql);
 if($execute == true){
     $_SESSION['disciOK'] = "Disciplina adicionada com sucesso";
 }
-$sql = "SELECT * FROM prof_disciplina";
+// listar disciplinas Lecionadas
+$profId = $_GET['profId'];
+$sql = "SELECT * FROM prof_disciplina PD JOIN professores P ON PD.profCodigo = P.profId
+JOIN disciplinas D ON PD.disciCodigo = D.disciId WHERE profId = '$profId'";
 $consulta = mysqli_query($conexao, $sql);
  ?>
 <!DOCTYPE html>
@@ -104,7 +107,7 @@ $consulta = mysqli_query($conexao, $sql);
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -132,9 +135,9 @@ $consulta = mysqli_query($conexao, $sql);
                                     Professor (a): <?php echo $professor->getNomeProf();?><br>
                                     <hr>
                                     <div class="form-group col-lg-12 col-xs-12">
-                                    <a href="editarProfessor.php?profId=<?= $professor->getProfId();?>"> 
+                                    <a href="editarProfessor.php?profId=<?= $professor->getProfId();?>">
                                     <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
-                                    <a href="../Controller/excluirProfessor.php?profId=<?= $professor->getProfId();?>"> 
+                                    <a href="../Controller/excluirProfessor.php?profId=<?= $professor->getProfId();?>">
                                     <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
                                     <div>
                                     <hr>
@@ -153,7 +156,7 @@ $consulta = mysqli_query($conexao, $sql);
                                     <form aciton="?profId=<?= $professor->getProfId();?>" method="post">
                                     <small>Inserir Disciplinas Lecionadas</small>
                                     <div class="input-group custom-search-form">
-                                        <select type="text" class="form-control" name="disciCodigo">
+                                        <select type="text" class="form-control" name="disciCodigo" required="">
                                             <option></option>
                                             <?php while($objtDisci = array_shift($disciplinalist)){?>
                                           <option value="<?php echo $objtDisci->getDisciId();?>">
@@ -162,7 +165,7 @@ $consulta = mysqli_query($conexao, $sql);
                                             <?php } ?>
                                         </select>
                                         <span class="input-group-btn">
-                                        <button class="btn btn-success"> Salvar Disciplina</button>
+                                        <button class="btn btn-success"> Adicionar Disciplina</button>
                                     </span>
                                     </div>
                                     </form>
@@ -172,9 +175,9 @@ $consulta = mysqli_query($conexao, $sql);
                             <table width="100%" class="table table-striped table-bordered table-hover">
                             <?php while($linhaDisc = mysqli_fetch_array($consulta)){?>
                                     <tr class="odd gradeX">
-                                        <td class="col-xs-11"><?php echo $linhaDisc['disciCodigo'];?></td>
+                                        <td class="col-xs-11"><?php echo $linhaDisc['disciplina'];?></td>
                                         <td class="col-xs-1">
-                                        <a href="../Controller/excluirDiscProf.php?prof_dc_Id=<?= $linhaDisc['prof_dc_Id'];?>"> 
+                                        <a href="../Controller/excluirDiscProf.php?prof_dc_Id=<?= $linhaDisc['prof_dc_Id'];?>">
                                         <button class="btn btn-danger btn-sm"><i  class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>

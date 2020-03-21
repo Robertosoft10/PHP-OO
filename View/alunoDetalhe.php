@@ -134,35 +134,51 @@ if(isset($_GET['alunoId'])){
                                 <form role="form" action="../Controller/inserirNota.php?alunoId=<?= $aluno->getAlunoId();?>" method="post">
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <small  id="form-nota">Preofessor: *</small>
-                                        <select class="form-control"  name="professor">
+                                        <select class="form-control"  name="professor"  required="">
+                                          <?php
+                                          // listar professores
+                                          require_once '../Api/classProfessorDao.php';
+                                          $professorDAO = new ProfessorDAO();
+                                          $professorList = $professorDAO->listProfessores();
+                                           ?>
                                             <option></option>
-                                                <option value="2">ssssdd</option>
+                                            <?php while($professor = array_shift($professorList)){?>
+                                                <option value="<?php echo $professor->getProfId();?>">
+                                                <?php echo $professor->getNomeProf();?></option>
+                                              <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <small  id="form-nota">Disciplina: *</small>
-                                            <select class="form-control"  name="disciplina">
+                                            <select class="form-control"  name="disciplina"  required="">
+                                              <?php
+                                              require_once '../Api/classDisciplinaDao.php';
+                                              $disciplinaDAO = new DisciplinaDAO();
+                                              $disciplinaList = $disciplinaDAO->listDisciplina();
+                                               ?>
                                             <option></option>
-                                                <option value="1">eew</option>
+                                            <?php while($disciplina = array_shift($disciplinaList)){?>
+                                                <option value="<?php echo $disciplina->getdisciId();?>"><?php echo $disciplina->getDisciplina();?></option>
+                                              <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <small  id="form-nota">Bimestre: *</small>
-                                        <select class="form-control" name="bimestre">
+                                        <select class="form-control" name="bimestre"  required="">
                                                 <option></option>
                                                 <option value="b1">1º Bimestre</option>
                                                 <option value="b2">2º Bimestre</option>
-                                                <option value="b3">2º Bimestre</option>
-                                                <option value="b4">2º Bimestre</option>
+                                                <option value="b3">3º Bimestre</option>
+                                                <option value="b4">4º Bimestre</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-4 col-xs-4">
-                                        <small  id="form-nota">Nota: *</small>
-                                        <input class="form-control"  name="nota">
-                                        </div>
-                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <div class="form-group col-lg-8 col-xs-8">
                                             <br>
                                         <button type="submit" class="btn btn-success">Salvar Nota</button>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-xs-4">
+                                        <small  id="form-nota">Nota do Bimestre: *</small>
+                                        <input class="form-control"  name="nota" required="">
                                         </div>
                                     </form>
 
@@ -204,12 +220,20 @@ if(isset($_GET['alunoId'])){
                                         <th>Nota</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbod>
+                                  <?php
+                                  $alunoId = $_GET['alunoId'];
+                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
+                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b1'";
+                                    $consultab1 = mysqli_query($conexao, $sql);
+                                    while($linhaNota = mysqli_fetch_array($consultab1)){
+                                  ?>
                                     <tr class="odd gradeX">
-                                        <td>b 01</td>
-                                        <td>b 01</td>
-                                        <td>b 01</td>
+                                        <td><?php echo $linhaNota['nomeProf'];?></td>
+                                        <td><?php echo $linhaNota['disciplina'];?></td>
+                                        <td><?php echo $linhaNota['nota'];?></td>
                                     </tr>
+                                  <?php } ?>
                                 </tbody>
                             </table>
                                 </div>
@@ -226,11 +250,19 @@ if(isset($_GET['alunoId'])){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  <?php
+                                  $alunoId = $_GET['alunoId'];
+                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
+                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b2'";
+                                    $consultab1 = mysqli_query($conexao, $sql);
+                                    while($linhaNota = mysqli_fetch_array($consultab1)){
+                                  ?>
                                     <tr class="odd gradeX">
-                                        <td>b 01</td>
-                                        <td>b 01</td>
-                                        <td>b 01</td>
+                                        <td><?php echo $linhaNota['nomeProf'];?></td>
+                                        <td><?php echo $linhaNota['disciplina'];?></td>
+                                        <td><?php echo $linhaNota['nota'];?></td>
                                     </tr>
+                                  <?php } ?>
                                 </tbody>
                             </table>
                                 </div>
@@ -247,11 +279,19 @@ if(isset($_GET['alunoId'])){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  <?php
+                                  $alunoId = $_GET['alunoId'];
+                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
+                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b3'";
+                                    $consultab1 = mysqli_query($conexao, $sql);
+                                    while($linhaNota = mysqli_fetch_array($consultab1)){
+                                  ?>
                                     <tr class="odd gradeX">
-                                        <td>b 01</td>
-                                        <td>b 01</td>
-                                        <td>b 01</td>
+                                        <td><?php echo $linhaNota['nomeProf'];?></td>
+                                        <td><?php echo $linhaNota['disciplina'];?></td>
+                                        <td><?php echo $linhaNota['nota'];?></td>
                                     </tr>
+                                  <?php } ?>
                                 </tbody>
                             </table>
                                 </div>
@@ -268,11 +308,19 @@ if(isset($_GET['alunoId'])){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  <?php
+                                  $alunoId = $_GET['alunoId'];
+                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
+                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b4'";
+                                    $consultab1 = mysqli_query($conexao, $sql);
+                                    while($linhaNota = mysqli_fetch_array($consultab1)){
+                                  ?>
                                     <tr class="odd gradeX">
-                                        <td>b 01</td>
-                                        <td>b 01</td>
-                                        <td>b 01</td>
+                                        <td><?php echo $linhaNota['nomeProf'];?></td>
+                                        <td><?php echo $linhaNota['disciplina'];?></td>
+                                        <td><?php echo $linhaNota['nota'];?></td>
                                     </tr>
+                                  <?php } ?>
                                 </tbody>
                             </table>
                                 </div>
