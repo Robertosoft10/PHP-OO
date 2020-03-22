@@ -45,7 +45,7 @@ if(isset($_GET['alunoId'])){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <navid="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -53,7 +53,7 @@ if(isset($_GET['alunoId'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href="" id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -70,8 +70,8 @@ if(isset($_GET['alunoId'])){
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php" id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i>  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -111,8 +111,8 @@ if(isset($_GET['alunoId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             Editar dados do Aluno
                         </div>
                         <div class="panel-body">
@@ -164,7 +164,7 @@ if(isset($_GET['alunoId'])){
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                                        <button id="barra-pagina" type="submit" class="btn btn-default">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>
@@ -179,8 +179,8 @@ if(isset($_GET['alunoId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                            Lista de Alunos
                         </div>
                         <!-- /.panel-heading -->
@@ -202,7 +202,7 @@ if(isset($_GET['alunoId'])){
                                         <td><?php echo $aluno->getSerie();?></td>
                                         <td>
                                         <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>">
-                                        <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

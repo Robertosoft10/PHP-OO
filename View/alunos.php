@@ -41,7 +41,7 @@ $alunos = $alunoDAO->listAlunos();
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav  id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -49,7 +49,7 @@ $alunos = $alunoDAO->listAlunos();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href=""  id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -66,8 +66,8 @@ $alunos = $alunoDAO->listAlunos();
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"  id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -90,7 +90,7 @@ $alunos = $alunoDAO->listAlunos();
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -123,7 +123,7 @@ $alunos = $alunoDAO->listAlunos();
                 <!-- alert update -->
                 <?php if(isset($_SESSION ['alunoNaoAtualizado'])){?>
                 <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoAtualizado'];?>
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoAtualizado'];?>
                 </div>
                 <?php unset($_SESSION ['alunoNaoAtualizado']); } ?>
 
@@ -135,7 +135,7 @@ $alunos = $alunoDAO->listAlunos();
                  <!-- alert delete -->
                  <?php if(isset($_SESSION ['alunoNaoDeletado'])){?>
                 <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoNaoDeletado'];?>
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoDeletado'];?>
                 </div>
                 <?php unset($_SESSION ['alunoNaoDeletado']); } ?>
 
@@ -143,9 +143,21 @@ $alunos = $alunoDAO->listAlunos();
                 <div class="alert alert-success" role="alert">
                 <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoDeletado'];?>
                 </div>
-                <?php unset($_SESSION ['alunoDeletado']); } ?>
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"> 
+                  <?php unset($_SESSION ['alunoDeletado']); } ?>
+                   <!-- alert delete -->
+                <?php if(isset($_SESSION ['notaDeletada'])){?>
+                <div class="alert alert-success" role="alert">
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['notaDeletada'];?>
+                </div>
+                <?php unset($_SESSION ['notaDeletada']); } ?>
+
+                <?php if(isset($_SESSION ['notaNaoDeletada'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['notaNaoDeletada'];?>
+                </div>
+                <?php unset($_SESSION ['notaNaoDeletada']); } ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  id="barra-pagina">
                             Cadastrar novo Aluno
                         </div>
                         <div class="panel-body">
@@ -196,8 +208,8 @@ $alunos = $alunoDAO->listAlunos();
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Cadastro</button>
-                                        </div>  
+                                        <button  id="barra-pagina" type="submit" class="btn btn-default">Salvar Cadastro</button>
+                                        </div>
                                     </form>
                                 </div>
                         </div>
@@ -211,9 +223,9 @@ $alunos = $alunoDAO->listAlunos();
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Lista de Alunos 
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  id="barra-pagina">
+                           Lista de Alunos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -233,8 +245,8 @@ $alunos = $alunoDAO->listAlunos();
                                         <td><?php echo $aluno->getNomeAluno();?></td>
                                         <td><?php echo $aluno->getSerie();?></td>
                                         <td>
-                                        <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>"> 
-                                        <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>">
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

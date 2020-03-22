@@ -1,10 +1,23 @@
 <?php
 session_start();
 include_once '../Api/secury.php';
-require_once '../Api/classDisciplinaDao.php';
-$disciplinaDAO = new DisciplinaDAO();
-$disciplina = $disciplinaDAO->listDisciplina();
- ?>
+include_once '../Api/conexao.php';
+$profId = $_GET['profId'];
+  $sql = "INSERT INTO notas (professor)VALUES('$profId')";
+  $executar = mysqli_query($conexao, $sql);
+if($executar == true){
+$_SESSION['profeadd'] = "Adiciona, pode inserir as nota para os alunos!";
+}else{
+
+}
+require_once '../Api/classProfessorDao.php';
+$professorDAO = new ProfessorDAO();
+$professorList = $professorDAO->listProfessores();
+if(isset($_GET['profId'])){
+    $profId = $_GET['profId'];
+    $professor = $professorDAO->searchProfessor($profId);
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -41,7 +54,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -49,7 +62,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="" id="barra-pagina">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -66,8 +79,8 @@ $disciplina = $disciplinaDAO->listDisciplina();
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php" id="barra-pagina">
-                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -79,13 +92,13 @@ $disciplina = $disciplinaDAO->listDisciplina();
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
+                            <a href="../View/painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
                         </li>
                         <li>
-                            <a href="alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
+                            <a href="../View/alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
                         </li>
                         <li>
-                            <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
+                            <a href="../View/professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
                         </li>
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
@@ -100,56 +113,55 @@ $disciplina = $disciplinaDAO->listDisciplina();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Admin Usuários</h3>
+                    <h3 class="page-header">Detalhe do Aluno</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                <!-- alerts erro -->
-                <?php if(isset($_SESSION ['adminFazio'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['adminFazio'];?>
-                </div>
-                <?php unset($_SESSION ['adminFazio']); } ?>
-
-                 <!-- alerts erro -->
-                 <?php if(isset($_SESSION ['adminErro'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['adminErro'];?>
-                </div>
-                <?php unset($_SESSION ['adminErro']); } ?>
-
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
-                            Área restrita para usuário administrador
+                        <div class="panel-heading" id="nome-aluno">
+                           Professor: <?php echo $professor->getNomeProf();?>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12">
-                                <form role="form" action="../Api/veryUserAdm.php" method="post">
-                                        <div class="form-group col-lg-6 col-xs-6">
-                                        <input class="form-control" type="email"  name="email" placeholder="E-mail">
-                                        </div>
-                                        <div class="form-group col-lg-6 col-xs-6">
-                                        <input class="form-control" type="password"  name="password" placeholder="Senha">
-                                        </div>
-                                        <div class="form-group col-lg-12 col-xs-12">
-                                        <button id="barra-pagina" type="submit" class="btn btn-default"> Continuar</button>
-                                        </div>
-                                    </form>
+                                <div class="col-lg-12" id="aluno-detalhe">
+                                  <a href="../View/professorDetalhe.php?profId=<?= $professor->getProfId();?>">
+                                  <button id="barra-pagina" type="button" class="btn btn-default">
+                                  Detalhe</button></a>
+                                    <div>
                                 </div>
                         </div>
-                        <!-- /.panel-footer -->
+                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel .chat-panel -->
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-6 -->
+            </div>
                 <!-- /.col-lg-4 -->
             </div>
             </div>
-            <!-- /.row -->
-
+            <!-- Modal -->
+            <div class="modal fade" id="exibir-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" id="modal-tamanho">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body text-center">
+                          <h4><?php echo $_SESSION['profeadd'];?></h4>
+                          <a href="../View/professorDetalhe.php?profId=<?= $professor->getProfId();?>"
+                          <button id="btn-modal-nota" type="button" class="btn btn-default">
+                          Ok</button></a>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="../Components/vendor/jquery/jquery.min.js"></script>
@@ -171,13 +183,25 @@ $disciplina = $disciplinaDAO->listDisciplina();
     <script src="../Components/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../Components/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script>
-    $(document).ready(function() {
+      $(document).ready(function() {
         $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
+          responsive: true
+              });
+          });
+           </script>
+           <?php
+           if($_SESSION['profeadd'] == true){
+             ?>
+           <script type="text/javascript">
+           $(document).ready(function(){
+             $('#exibir-modal').modal('show');
+           });
+           </script>
+           <?php
+       }else{
 
+       }
+    ?>
 </body>
 
 </html>

@@ -3,28 +3,60 @@ session_start();
 include_once '../Api/secury.php';
 include_once '../Api/conexao.php';
 
-
-$aluno = $_GET['alunoId'];
-$professor = $_POST['professor'];
-$disciplina = $_POST['disciplina'];
 $bimestre = $_POST['bimestre'];
-$nota = $_POST['nota'];
-
-  $sql = "INSERT INTO notas (aluno, professor, disciplina, bimestre, nota)VALUES('$aluno', '$professor', '$disciplina', '$bimestre', '$nota')";
+  if($bimestre == 'b1'){
+$aluno = $_POST['aluno'];
+$professor = $_GET['profId'];
+$disciplina = $_POST['disciplina'];
+$nota1 = $_POST['nota'];
+  $bimestre = 'b1';
+  @$_POST['b1'];
+  $sql = "UPDATE notas SET aluno='$aluno', professor='$professor', disciplina='$disciplina', bm1='$bimestre', nota1='$nota1' WHERE professor = '$professor'";
   $executar = mysqli_query($conexao, $sql);
-if($executar == true){
-$_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
-}else{
 
+$_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
 }
-include_once '../Api/conexao.php';
-require_once '../Api/classAlunoDao.php';
-$alunoDAO = new AlunoDAO();
-$alunos = $alunoDAO->listAlunos();
-if(isset($_GET['alunoId'])){
-  $alunoId = $_GET['alunoId'];
-  $aluno = $alunoDAO->searchAluno($alunoId);
+else if($bimestre == 'b2'){
+$aluno = $_POST['aluno'];
+$professor = $_GET['profId'];
+$disciplina = $_POST['disciplina'];
+$nota2 = $_POST['nota'];
+  $bimestre = 'b2';
+  @$_POST['b2'];
+  $sql = "UPDATE notas SET aluno='$aluno', professor='$professor', disciplina='$disciplina', bm2='$bimestre',  nota2='$nota2' WHERE professor = '$professor'";
+  $executar = mysqli_query($conexao, $sql);
+  $_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
 }
+else if($bimestre == 'b3'){
+$aluno = $_PEST['aluno'];
+$professor = $_GET['profId'];
+$disciplina = $_POST['disciplina'];
+$nota3 = $_POST['nota'];
+  $bimestre = 'b3';
+  @$_POST['b3'];
+  $sql = "UPDATE notas SET aluno='$aluno', professor='$professor', disciplina='$disciplina', bm3='$bimestre', nota3='$nota3' WHERE professor = '$professor'";
+  $executar = mysqli_query($conexao, $sql);
+  $_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
+}
+  else if($bimestre == 'b4'){
+  $aluno = $_POST['aluno'];
+  $professor = $_GET['profId'];
+  $disciplina = $_POST['disciplina'];
+  $nota4 = $_POST['nota'];
+    $bimestre = 'b4';
+    @$_POST['b4'];
+  $sql = "UPDATE notas SET aluno='$aluno', professor='$professor', disciplina='$disciplina', bm4='$bimestre',  nota4='$nota4' WHERE professor = '$professor'";
+    $executar = mysqli_query($conexao, $sql);
+    $_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
+}
+
+require_once '../Api/classProfessorDao.php';
+$professorDAO = new ProfessorDAO();
+$professorList = $professorDAO->listProfessores();
+if(isset($_GET['profId'])){
+    $profId = $_GET['profId'];
+    $professor = $professorDAO->searchProfessor($profId);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -62,7 +94,7 @@ if(isset($_GET['alunoId'])){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -130,16 +162,13 @@ if(isset($_GET['alunoId'])){
             <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading" id="nome-aluno">
-                           Aluno: <?php echo $aluno->getNomeAluno();?>
+                           professor: <?php echo $professor->getNomeProf();?>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12" id="aluno-detalhe">
-                                    ID: <?php echo $aluno->getAlunoid();?>,
-                                    Série: <?php echo $aluno->getSerie();?>,
-                                    Turno: <?php echo $aluno->getTurno();?>
-                                    <a href="../View/alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>"
-                                    <button type="button" class="btn btn-primary">
+                                    <a href="../View/professorDetalhe.php?profId=<?= $professor->getProfId();?>">
+                                    <button id="barra-pagina" type="button" class="btn btn-default">
                                     Detalhe</button></a>
                                     <div>
                                 </div>
@@ -161,8 +190,8 @@ if(isset($_GET['alunoId'])){
                         </div>
                         <div class="modal-body text-center">
                           <h4><?php echo $_SESSION['notaSalva'];?></h4>
-                          <a href="../View/alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>"
-                          <button id="btn-modal-nota" type="button" class="btn btn-primary">
+                          <a href="../View/professorDetalhe.php?profId=<?= $professor->getProfId();?>"
+                          <button id="btn-modal-nota" type="button" class="btn btn-default">
                           Ok</button></a>
                         </div>
                         <div class="modal-footer">

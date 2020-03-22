@@ -41,7 +41,7 @@ $usuarios = $usuarioDAO->listUsuarios();
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -49,7 +49,7 @@ $usuarios = $usuarioDAO->listUsuarios();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href="" id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -66,8 +66,8 @@ $usuarios = $usuarioDAO->listUsuarios();
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php" id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -144,8 +144,8 @@ $usuarios = $usuarioDAO->listUsuarios();
                 <i class="fa fa-check"></i>  <?php echo $_SESSION ['userDeletado'];?>
                 </div>
                 <?php unset($_SESSION ['userDeletado']); } ?>
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             Cadastrar novo Usuário
                         </div>
                         <div class="panel-body">
@@ -183,7 +183,7 @@ $usuarios = $usuarioDAO->listUsuarios();
 
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <br>
-                                        <button type="submit" class="btn btn-success">Cadastrar Usuário</button>
+                                        <button id="barra-pagina" type="submit" class="btn btn-default">Cadastrar Usuário</button>
                                         </div>
                                     </form>
                                 </div>
@@ -198,8 +198,8 @@ $usuarios = $usuarioDAO->listUsuarios();
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                            Lista de Usuários
                         </div>
                         <!-- /.panel-heading -->
@@ -234,9 +234,9 @@ $usuarios = $usuarioDAO->listUsuarios();
                                         </td>
                                         <td>
                                         <a href="editarUsuario.php?userId=<?= $usuario->getUserId();?>">
-                                        <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
                                         <a href="../Controller/excluirUser.php?userId=<?= $usuario->getUserId();?>">
-                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

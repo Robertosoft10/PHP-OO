@@ -41,7 +41,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav    id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -49,7 +49,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href=""   id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -66,8 +66,8 @@ $disciplina = $disciplinaDAO->listDisciplina();
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"    id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado:</i> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -90,7 +90,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -144,8 +144,8 @@ $disciplina = $disciplinaDAO->listDisciplina();
                 <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciDeletado'];?>
                 </div>
                 <?php unset($_SESSION ['disciDeletado']); } ?>
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading"    id="barra-pagina">
                             Cadastrar nova Disciplina
                         </div>
                         <div class="panel-body">
@@ -157,8 +157,8 @@ $disciplina = $disciplinaDAO->listDisciplina();
                                         <input class="form-control"  name="disciplina">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Cadastro</button>
-                                        </div>  
+                                        <button     id="barra-pagina"type="submit" class="btn btn-default">Salvar Cadastro</button>
+                                        </div>
                                     </form>
                                 </div>
                         </div>
@@ -172,9 +172,9 @@ $disciplina = $disciplinaDAO->listDisciplina();
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Lista de Disciplinas 
+                    <div class="panel panel-default">
+                        <div class="panel-heading"    id="barra-pagina">
+                           Lista de Disciplinas
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -192,10 +192,10 @@ $disciplina = $disciplinaDAO->listDisciplina();
                                         <td><?php echo $objtDisci->getDisciId();?></td>
                                         <td><?php echo $objtDisci->getDisciplina();?></td>
                                         <td>
-                                        <a href="editarDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>"> 
-                                        <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa fa-pencil"></i> </button></a>
-                                        <a href="../Controller/excluirDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>"> 
-                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa fa-trash"></i> </button></a>
+                                        <a href="editarDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>">
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa fa-pencil"></i> </button></a>
+                                        <a href="../Controller/excluirDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>">
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

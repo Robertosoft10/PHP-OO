@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once '../Api/secury.php';
 ?>
@@ -38,7 +38,7 @@ include_once '../Api/secury.php';
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -46,7 +46,7 @@ include_once '../Api/secury.php';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a  id="barra-pagina" class="navbar-brand" href="">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -63,8 +63,8 @@ include_once '../Api/secury.php';
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"  id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -87,7 +87,7 @@ include_once '../Api/secury.php';
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -105,8 +105,8 @@ include_once '../Api/secury.php';
             <small id="nome-sist">Bem vindo(a)!  <?php echo $_SESSION['nomeUser'];?>  Sistema Lançamento de Notas</small><br><br>
             <div class="row">
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-Detalhes">
+                        <div class="panel-heading" id="barra-pagina">
                             <div class="row">
                             <a href="alunos.php">
                                 <div class="col-xs-3">
@@ -126,8 +126,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             <div class="row">
                             <a href="professor.php">
                                 <div class="col-xs-3">
@@ -147,8 +147,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             <div class="row">
                             <a href="disciplina.php">
                                 <div class="col-xs-3">
@@ -168,8 +168,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             <div class="row">
                             <a href="admUser.php">
                                 <div class="col-xs-3">

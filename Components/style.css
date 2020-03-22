@@ -1,4 +1,39 @@
+/*index */
+#btn-login{
+
+}
+#barra-login{
+    background-color: #2aadb5;
+    height: 250px;
+    width: 100%;
+    text-align: center;
+}
+#icon-login{
+  margin-top: 5%;
+  color: #ffffff;
+  font-size: 40pt;
+}
+#nome-sistem{
+  color: #ffffff;
+  font-size: 15pt;
+}
+#subtutulo-sistem{
+  color: #ffffff;
+  font-size: 13pt;
+}
+#form-login{
+  margin-top: -15%;
+}
+@media screen and (max-width: 1000px) {
+  #form-login{
+    margin-top: -35%;
+  }
+}
 /* paniel */
+#barra-pagina{
+background-color: #2aadb5;
+color: #ffffff;
+}
 #btn-link{
     color: #ffffff;
     font-size: 14pt;
@@ -22,10 +57,19 @@
 }
 #nome-aluno{
   font-size: 13pt;
+  background-color: #2aadb5;
+  color: #ffffff;
 }
 #btn-modal-nota{
   width: 30%;
+  background-color: #2aadb5;
+  color: #ffffff;
 }
 #modal-tamanho{
   margin-top: 10%;
+}
+#btn-add-professor{
+  background-color: #2aadb5;
+  color: #ffffff;
+  margin-top: -6%;
 }

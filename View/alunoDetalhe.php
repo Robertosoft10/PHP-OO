@@ -9,6 +9,9 @@ if(isset($_GET['alunoId'])){
   $alunoId = $_GET['alunoId'];
   $aluno = $alunoDAO->searchAluno($alunoId);
 }
+$alunoId = $_GET['alunoId'];
+$sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId'";
+$consulta = mysqli_query($conexao, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -46,7 +49,7 @@ if(isset($_GET['alunoId'])){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav  id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -54,7 +57,7 @@ if(isset($_GET['alunoId'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href=""  id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -71,8 +74,8 @@ if(isset($_GET['alunoId'])){
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i>  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"  id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i>  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -105,230 +108,26 @@ if(isset($_GET['alunoId'])){
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Detalhe do Aluno</h3>
+                    <h3 class="page-header">Detalhes do Aluno
+                    </h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-default">
                         <div class="panel-heading" id="nome-aluno">
                            Aluno: <?php echo $aluno->getNomeAluno();?>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-12" id="aluno-detalhe">
+                                <div class="col-lg-12">
                                     ID: <?php echo $aluno->getAlunoid();?>,
                                     Série: <?php echo $aluno->getSerie();?>,
                                     Turno: <?php echo $aluno->getTurno();?>
-                                    <hr>
-                                    <div class="form-group col-lg-12 col-xs-12">
-                                    <a href="editarAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
-                                    <button  class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
-                                    <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
-                                    <button  class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
-                                    <div>
                                 </div>
-                                <hr>
-                                <form role="form" action="../Controller/inserirNota.php?alunoId=<?= $aluno->getAlunoId();?>" method="post">
-                                        <div class="form-group col-lg-4 col-xs-4">
-                                        <small  id="form-nota">Preofessor: *</small>
-                                        <select class="form-control"  name="professor"  required="">
-                                          <?php
-                                          // listar professores
-                                          require_once '../Api/classProfessorDao.php';
-                                          $professorDAO = new ProfessorDAO();
-                                          $professorList = $professorDAO->listProfessores();
-                                           ?>
-                                            <option></option>
-                                            <?php while($professor = array_shift($professorList)){?>
-                                                <option value="<?php echo $professor->getProfId();?>">
-                                                <?php echo $professor->getNomeProf();?></option>
-                                              <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-xs-4">
-                                        <small  id="form-nota">Disciplina: *</small>
-                                            <select class="form-control"  name="disciplina"  required="">
-                                              <?php
-                                              require_once '../Api/classDisciplinaDao.php';
-                                              $disciplinaDAO = new DisciplinaDAO();
-                                              $disciplinaList = $disciplinaDAO->listDisciplina();
-                                               ?>
-                                            <option></option>
-                                            <?php while($disciplina = array_shift($disciplinaList)){?>
-                                                <option value="<?php echo $disciplina->getdisciId();?>"><?php echo $disciplina->getDisciplina();?></option>
-                                              <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-xs-4">
-                                        <small  id="form-nota">Bimestre: *</small>
-                                        <select class="form-control" name="bimestre"  required="">
-                                                <option></option>
-                                                <option value="b1">1º Bimestre</option>
-                                                <option value="b2">2º Bimestre</option>
-                                                <option value="b3">3º Bimestre</option>
-                                                <option value="b4">4º Bimestre</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-8 col-xs-8">
-                                            <br>
-                                        <button type="submit" class="btn btn-success">Salvar Nota</button>
-                                        </div>
-                                        <div class="form-group col-lg-4 col-xs-4">
-                                        <small  id="form-nota">Nota do Bimestre: *</small>
-                                        <input class="form-control"  name="nota" required="">
-                                        </div>
-                                    </form>
 
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Notas do Aluno
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-pills">
-                                <li class="active"><a href="#bimetre1-pills" data-toggle="tab">1º Bimestre</a>
-                                </li>
-                                <li><a href="#bimetre2-pills" data-toggle="tab">2º Bimestre</a>
-                                </li>
-                                <li><a href="#bimetre3-pills" data-toggle="tab">3º Bimestre</a>
-                                </li>
-                                <li><a href="#bimetre4-pills" data-toggle="tab">4º Bimestre</a>
-                                </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="bimetre1-pills">
-                                    <h4>1º Bimestre</h4>
-                                <!-- b 1-->
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Professor (a)</th>
-                                        <th>Disciplina</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbod>
-                                  <?php
-                                  $alunoId = $_GET['alunoId'];
-                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
-                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b1'";
-                                    $consultab1 = mysqli_query($conexao, $sql);
-                                    while($linhaNota = mysqli_fetch_array($consultab1)){
-                                  ?>
-                                    <tr class="odd gradeX">
-                                        <td><?php echo $linhaNota['nomeProf'];?></td>
-                                        <td><?php echo $linhaNota['disciplina'];?></td>
-                                        <td><?php echo $linhaNota['nota'];?></td>
-                                    </tr>
-                                  <?php } ?>
-                                </tbody>
-                            </table>
-                                </div>
-                                <!-- fim b 1-->
-                                <div class="tab-pane fade" id="bimetre2-pills">
-                                <h4>2º Bimestre</h4>
-                              <!-- b 2-->
-                              <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example2">
-                                <thead>
-                                    <tr>
-                                        <th>Professor (a)</th>
-                                        <th>Disciplina</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $alunoId = $_GET['alunoId'];
-                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
-                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b2'";
-                                    $consultab1 = mysqli_query($conexao, $sql);
-                                    while($linhaNota = mysqli_fetch_array($consultab1)){
-                                  ?>
-                                    <tr class="odd gradeX">
-                                        <td><?php echo $linhaNota['nomeProf'];?></td>
-                                        <td><?php echo $linhaNota['disciplina'];?></td>
-                                        <td><?php echo $linhaNota['nota'];?></td>
-                                    </tr>
-                                  <?php } ?>
-                                </tbody>
-                            </table>
-                                </div>
-                                <!-- fim b 2-->
-                                <div class="tab-pane fade" id="bimetre3-pills">
-                                <h4>3º Bimestre</h4>
-                                   <!-- inicio b 3-->
-                                   <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example3">
-                                <thead>
-                                    <tr>
-                                        <th>Professor (a)</th>
-                                        <th>Disciplina</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $alunoId = $_GET['alunoId'];
-                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
-                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b3'";
-                                    $consultab1 = mysqli_query($conexao, $sql);
-                                    while($linhaNota = mysqli_fetch_array($consultab1)){
-                                  ?>
-                                    <tr class="odd gradeX">
-                                        <td><?php echo $linhaNota['nomeProf'];?></td>
-                                        <td><?php echo $linhaNota['disciplina'];?></td>
-                                        <td><?php echo $linhaNota['nota'];?></td>
-                                    </tr>
-                                  <?php } ?>
-                                </tbody>
-                            </table>
-                                </div>
-                                <!-- fim b 3-->
-                                <div class="tab-pane fade" id="bimetre4-pills">
-                                <h4>4º Bimestre</h4>
-                                    <!-- inicio b 4-->
-                                   <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example4">
-                                <thead>
-                                    <tr>
-                                        <th>Professor (a)</th>
-                                        <th>Disciplina</th>
-                                        <th>Nota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $alunoId = $_GET['alunoId'];
-                                  $sql = "SELECT * FROM notas NT JOIN alunos AL ON NT.aluno = AL.alunoId JOIN professores PF ON NT.professor = PF.profId
-                                    JOIN disciplinas DC ON NT.disciplina = DC.disciId WHERE alunoId = '$alunoId' AND 	bimestre = 'b4'";
-                                    $consultab1 = mysqli_query($conexao, $sql);
-                                    while($linhaNota = mysqli_fetch_array($consultab1)){
-                                  ?>
-                                    <tr class="odd gradeX">
-                                        <td><?php echo $linhaNota['nomeProf'];?></td>
-                                        <td><?php echo $linhaNota['disciplina'];?></td>
-                                        <td><?php echo $linhaNota['nota'];?></td>
-                                    </tr>
-                                  <?php } ?>
-                                </tbody>
-                            </table>
-                                </div>
-                                <!-- fim b 4-->
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-6 -->
@@ -336,6 +135,51 @@ if(isset($_GET['alunoId'])){
                 <!-- /.col-lg-4 -->
             </div>
             </div>
+            <div class="row">
+            <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  id="barra-pagina">
+                           Lista de Notas
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Professor</th>
+                                        <th>Disciplina</th>
+                                        <th>1º Bm </th>
+                                        <th>2º Bm </th>
+                                        <th>3º Bm </th>
+                                        <th>4º Bm </th>
+                                        <th>PT</th>
+                                        <th>M. Final</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <?php while($nota = mysqli_fetch_array($consulta)){ ?>
+                                    <tr class="odd gradeX">
+                                        <td><?php echo $nota['nomeProf'];?> </td>
+                                        <td><?php echo $nota['disciplina'];?></td>
+                                        <td><?php echo $nota['nota1'];?></td>
+                                        <td><?php echo $nota['nota2'];?></td>
+                                        <td><?php echo $nota['nota3'];?></td>
+                                        <td><?php echo $nota['nota4'];?></td>
+                                        <?php $mdeiaS = $nota['nota1'] + $nota['nota2'] + $nota['nota3'] + $nota['nota4'];?>
+                                        <td><?php echo $mdeiaS;?></td>
+                                        <?php $mdeiaF = ($nota['nota1'] + $nota['nota2'] + $nota['nota3'] + $nota['nota4']) / 4;?>
+                                        <td><?php echo $mdeiaF;?></td>
+                                          <td>
+                                            <a href="../Controller/excluirNota.php?notaId=<?= $nota['notaId'];?>">
+                                            <button id="barra-pagina" class="btn btn-default btn-sm"><i  class="fa  fa-trash"></i> </button></a>
+                                          </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
         <!-- /#wrapper -->
 
     <!-- jQuery -->

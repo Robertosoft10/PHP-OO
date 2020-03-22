@@ -35,8 +35,15 @@ CREATE TABLE notas(
   aluno int,
 	professor int,
   disciplina int,
-  bimestre varchar(100),
-  nota varchar(30),
+  bm1 varchar(11),
+  bm2 varchar(11),
+  bm3 varchar(11),
+  bm4 varchar(11),
+  nota1 varchar(11),
+  nota2 varchar(11),
+  nota3 varchar(11),
+  nota4 varchar(11),
+
 	foreign key (aluno) references alunos (alunoId),
   foreign key (professor) references professores (profId),
   foreign key (disciplina) references disciplinas (disciId)

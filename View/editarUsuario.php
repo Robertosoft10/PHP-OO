@@ -45,7 +45,7 @@ if(isset($_GET['userId'])){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="barra-pagina"  id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -53,7 +53,7 @@ if(isset($_GET['userId'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema Escolar 2.0</a>
+                <a id="barra-pagina" class="navbar-brand" href="">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -70,8 +70,8 @@ if(isset($_GET['userId'])){
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php">
-                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair:</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"  id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -94,7 +94,7 @@ if(isset($_GET['userId'])){
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
                         </li>
-                           
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -111,8 +111,8 @@ if(isset($_GET['userId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading"> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
                             Editar dados do Usuário
                         </div>
                         <div class="panel-body">
@@ -144,7 +144,7 @@ if(isset($_GET['userId'])){
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <label>Status: </label>
                                         <select class="form-control"  name="status">
-                                        <?php 
+                                        <?php
                                         $usuario->getStatus();
                                         if($usuario->getStatus() == 1){
                                           $user = 'Ativo';
@@ -157,11 +157,11 @@ if(isset($_GET['userId'])){
                                                 <option value="0">Inativo</option>
                                             </select>
                                         </div>
-                                        
+
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <br>
-                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
-                                        </div>  
+                                        <button id="barra-pagina" type="submit" class="btn btn-default">Salvar Alterações</button>
+                                        </div>
                                     </form>
                                 </div>
                         </div>
@@ -175,9 +175,9 @@ if(isset($_GET['userId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           Lista de Usuários 
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina">
+                           Lista de Usuários
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -197,7 +197,7 @@ if(isset($_GET['userId'])){
                                         <td><?php echo $usuario->getNomeUser();?></td>
                                         <td><?php echo $usuario->getEmail();?></td>
                                         <td><?php echo $usuario->getTipo();?></td>
-                                        <?php 
+                                        <?php
                                         $usuario->getStatus();
                                         if($usuario->getStatus() == 1){
                                           $user = '<button class="btn btn-success btn-xs">On</button>';
@@ -207,13 +207,13 @@ if(isset($_GET['userId'])){
                                         ?>
                                         <td>
                                         <?php echo $user;?>
-                                        
+
                                         </td>
                                         <td>
-                                        <a href="editarUsuario.php?UserId=<?= $usuario->getUserId();?>"> 
-                                        <button class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
-                                        <a href="../Controller/excluirUser.php?UserId=<?= $usuario->getUserId();?>"> 
-                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
+                                        <a href="editarUsuario.php?UserId=<?= $usuario->getUserId();?>">
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <a href="../Controller/excluirUser.php?UserId=<?= $usuario->getUserId();?>">
+                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>
