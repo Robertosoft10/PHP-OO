@@ -145,13 +145,13 @@ $consulta = mysqli_query($conexao, $sql);
                                     <hr>
                                     <div class="form-group col-lg-12 col-xs-12">
                                     <a href="editarProfessor.php?profId=<?= $professor->getProfId();?>">
-                                    <button    id="barra-pagina"  class="btn btn-default"><i class="fa fa-pencil"></i> Editar </button></a>
+                                    <button   class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
                                     <a href="../Controller/excluirProfessor.php?profId=<?= $professor->getProfId();?>">
-                                    <button    id="barra-pagina"  class="btn btn-default"><i class="fa fa-trash"></i> Excluir</button></a>
+                                    <button   class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
                                     <?php if($result['professor'] == $professor->getProfId()) { ?>
                                       <?php }else { ?>
                                         <form action="../Controller/adic_prof-nota.php?profId=<?= $professor->getProfId();?>" method="post">
-                                          <button  id="btn-add-professor"  class="btn btn-default  pull-right"><i class="fa fa-arrow-circle-o-right"></i> Cadastre - Se </button>
+                                          <button  id="btn-add-professor"  class="btn btn-primary  pull-right"><i class="fa fa-arrow-circle-o-right"></i> Cadastre - Se </button>
                                         </form>
                                       <?php } ?>
                                     <div>
@@ -200,7 +200,7 @@ $consulta = mysqli_query($conexao, $sql);
                                             </div>
                                             <div class="form-group col-lg-8 col-xs-8">
                                                 <br>
-                                            <button type="submit" class="btn btn-default"  id="barra-pagina">Salvar Nota</button>
+                                            <button type="submit" class="btn btn-primary">Salvar Nota</button>
                                             </div>
                                             <div class="form-group col-lg-4 col-xs-4">
                                             <small  id="form-nota">Nota do Bimestre: *</small>
@@ -228,7 +228,7 @@ $consulta = mysqli_query($conexao, $sql);
                                             <?php } ?>
                                         </select>
                                         <span class="input-group-btn">
-                                        <button class="btn btn-default"   id="barra-pagina"> Adicionar Disciplina</button>
+                                        <button class="btn btn-primary"> Adicionar Disciplina</button>
                                     </span>
                                     </div>
                                     </form>

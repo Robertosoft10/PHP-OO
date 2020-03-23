@@ -112,8 +112,8 @@ if(isset($_GET['disciId'])){
             <div class="row">
             <div class="col-lg-12">
 
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  id="barra-pagina">
                             Editar dado da  Disciplina
                         </div>
                         <div class="panel-body">
@@ -126,7 +126,7 @@ if(isset($_GET['disciId'])){
                                         value="<?php echo $disciplina->getDisciplina();?>">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>
@@ -141,8 +141,8 @@ if(isset($_GET['disciId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"  id="barra-pagina">
                            Lista de Disciplinas
                         </div>
                         <!-- /.panel-heading -->

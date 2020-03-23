@@ -3,7 +3,7 @@
 
 }
 #barra-login{
-    background-color: #2aadb5;
+    background-color: #5a2988;
     height: 250px;
     width: 100%;
     text-align: center;
@@ -31,7 +31,7 @@
 }
 /* paniel */
 #barra-pagina{
-background-color: #2aadb5;
+background-color: #5a2988;
 color: #ffffff;
 }
 #btn-link{
@@ -57,19 +57,17 @@ color: #ffffff;
 }
 #nome-aluno{
   font-size: 13pt;
-  background-color: #2aadb5;
+  background-color: #5a2988;
   color: #ffffff;
 }
 #btn-modal-nota{
   width: 30%;
-  background-color: #2aadb5;
+  background-color: #5a2988;
   color: #ffffff;
 }
 #modal-tamanho{
   margin-top: 10%;
 }
 #btn-add-professor{
-  background-color: #2aadb5;
-  color: #ffffff;
-  margin-top: -6%;
+    margin-top: -6%;
 }

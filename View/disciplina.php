@@ -157,7 +157,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
                                         <input class="form-control"  name="disciplina">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button     id="barra-pagina"type="submit" class="btn btn-default">Salvar Cadastro</button>
+                                        <button  type="submit" class="btn btn-primary">Salvar Cadastro</button>
                                         </div>
                                     </form>
                                 </div>
@@ -193,9 +193,9 @@ $disciplina = $disciplinaDAO->listDisciplina();
                                         <td><?php echo $objtDisci->getDisciplina();?></td>
                                         <td>
                                         <a href="editarDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa fa-pencil"></i> </button></a>
+                                        <button  class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa fa-pencil"></i> </button></a>
                                         <a href="../Controller/excluirDisciplina.php?disciId=<?= $objtDisci->getDisciId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa fa-trash"></i> </button></a>
+                                        <button  class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

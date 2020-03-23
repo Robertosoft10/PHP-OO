@@ -111,8 +111,8 @@ if(isset($_GET['profId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina" >
                             Editar dados do Professor
                         </div>
                         <div class="panel-body">
@@ -125,7 +125,7 @@ if(isset($_GET['profId'])){
                                             value="<?php echo $professor->getNomeProf();?>">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>
@@ -140,8 +140,8 @@ if(isset($_GET['profId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="barra-pagina" >
                            Lista de Professores
                         </div>
                         <!-- /.panel-heading -->
@@ -161,7 +161,7 @@ if(isset($_GET['profId'])){
                                         <td><?php echo $professor->getNomeProf();?></td>
                                         <td>
                                         <a href="professorDetalhe.php?profId=<?= $professor->getProfId();?>">
-                                        <button class="btn btn-primary btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <button class="btn btn-info btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

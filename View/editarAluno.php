@@ -8,7 +8,7 @@ if(isset($_GET['alunoId'])){
   $alunoId = $_GET['alunoId'];
   $aluno = $alunoDAO->searchAluno($alunoId);
 }
-?>
+ ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -45,7 +45,7 @@ if(isset($_GET['alunoId'])){
     <div id="wrapper">
 
         <!-- Navigation -->
-        <navid="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav  id="barra-pagina" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -53,7 +53,7 @@ if(isset($_GET['alunoId'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="" id="barra-pagina">Sistema Escolar 2.0</a>
+                <a class="navbar-brand" href=""  id="barra-pagina">Sistema Escolar 2.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -70,8 +70,8 @@ if(isset($_GET['alunoId'])){
                     <ul class="dropdown-menu dropdown-alerts"></ul>
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="../Api/logout.php" id="barra-pagina">
-                        <i class="fa fa-user fa-fw"></i>  Logado: <?php echo $_SESSION['nomeUser'];?>  <i class="fa fa-sign-out fa-fw"></i> Sair</i>
+                    <a class="dropdown-toggle" href="../Api/logout.php"  id="barra-pagina">
+                        <i class="fa fa-user fa-fw"></i> Logado: <?php echo $_SESSION['nomeUser'];?> <i class="fa fa-sign-out fa-fw"></i> Sair</i>
                     </a>
                     <!-- /.dropdown-user -->
                 </li>
@@ -111,16 +111,65 @@ if(isset($_GET['alunoId'])){
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">
+                <!-- alerts -->
+                <?php if(isset($_SESSION ['alunoNaoSalvo'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoSalvo'];?>
+                </div>
+                <?php unset($_SESSION ['alunoNaoSalvo']); } ?>
+
+                <?php if(isset($_SESSION ['alunoSalvo'])){?>
+                <div class="alert alert-success" role="alert">
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoSalvo'];?>
+                </div>
+                <?php unset($_SESSION ['alunoSalvo']); } ?>
+
+                <!-- alert update -->
+                <?php if(isset($_SESSION ['alunoNaoAtualizado'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoAtualizado'];?>
+                </div>
+                <?php unset($_SESSION ['alunoNaoAtualizado']); } ?>
+
+                <?php if(isset($_SESSION ['alunoAtualizado'])){?>
+                <div class="alert alert-success" role="alert">
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoAtualizado'];?>
+                </div>
+                <?php unset($_SESSION ['alunoAtualizado']); } ?>
+                 <!-- alert delete -->
+                 <?php if(isset($_SESSION ['alunoNaoDeletado'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['alunoNaoDeletado'];?>
+                </div>
+                <?php unset($_SESSION ['alunoNaoDeletado']); } ?>
+
+                <?php if(isset($_SESSION ['alunoDeletado'])){?>
+                <div class="alert alert-success" role="alert">
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['alunoDeletado'];?>
+                </div>
+                  <?php unset($_SESSION ['alunoDeletado']); } ?>
+                   <!-- alert delete -->
+                <?php if(isset($_SESSION ['notaDeletada'])){?>
+                <div class="alert alert-success" role="alert">
+                <i class="fa fa-check"></i>  <?php echo $_SESSION ['notaDeletada'];?>
+                </div>
+                <?php unset($_SESSION ['notaDeletada']); } ?>
+
+                <?php if(isset($_SESSION ['notaNaoDeletada'])){?>
+                <div class="alert alert-danger" role="alert">
+                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['notaNaoDeletada'];?>
+                </div>
+                <?php unset($_SESSION ['notaNaoDeletada']); } ?>
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
-                            Editar dados do Aluno
+                        <div class="panel-heading"  id="barra-pagina">
+                            Alterar dados do Aluno
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                 <form role="form" action="../Controller/atualizarAluno.php?alunoId=<?= $aluno->getAlunoId();?>" method="post">
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <label>Aluno:</label>
+                                        <label>Aluno: </label>
                                             <input class="form-control" name="nomeAluno"
                                             value="<?php echo $aluno->getNomeAluno();?>">
                                         </div>
@@ -164,7 +213,7 @@ if(isset($_GET['alunoId'])){
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button id="barra-pagina" type="submit" class="btn btn-default">Salvar Alterações</button>
+                                        <button  type="submit" class="btn btn-primary">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>
@@ -180,7 +229,7 @@ if(isset($_GET['alunoId'])){
             <div class="row">
             <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
+                        <div class="panel-heading"  id="barra-pagina">
                            Lista de Alunos
                         </div>
                         <!-- /.panel-heading -->
@@ -202,7 +251,7 @@ if(isset($_GET['alunoId'])){
                                         <td><?php echo $aluno->getSerie();?></td>
                                         <td>
                                         <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <button  class="btn btn-info btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

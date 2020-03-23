@@ -208,7 +208,7 @@ $alunos = $alunoDAO->listAlunos();
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button  id="barra-pagina" type="submit" class="btn btn-default">Salvar Cadastro</button>
+                                        <button  type="submit" class="btn btn-primary">Salvar Cadastro</button>
                                         </div>
                                     </form>
                                 </div>
@@ -246,7 +246,7 @@ $alunos = $alunoDAO->listAlunos();
                                         <td><?php echo $aluno->getSerie();?></td>
                                         <td>
                                         <a href="alunoDetalhe.php?alunoId=<?= $aluno->getAlunoId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <button  class="btn btn-info btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

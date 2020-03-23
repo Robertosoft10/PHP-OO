@@ -183,7 +183,7 @@ $usuarios = $usuarioDAO->listUsuarios();
 
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <br>
-                                        <button id="barra-pagina" type="submit" class="btn btn-default">Cadastrar Usuário</button>
+                                        <button  type="submit" class="btn btn-primary">Cadastrar Usuário</button>
                                         </div>
                                     </form>
                                 </div>
@@ -234,9 +234,9 @@ $usuarios = $usuarioDAO->listUsuarios();
                                         </td>
                                         <td>
                                         <a href="editarUsuario.php?userId=<?= $usuario->getUserId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <button  class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
                                         <a href="../Controller/excluirUser.php?userId=<?= $usuario->getUserId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
+                                        <button  class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

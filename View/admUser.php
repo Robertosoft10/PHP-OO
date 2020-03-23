@@ -136,7 +136,7 @@ $disciplina = $disciplinaDAO->listDisciplina();
                                         <input class="form-control" type="password"  name="password" placeholder="Senha">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button id="barra-pagina" type="submit" class="btn btn-default"> Continuar</button>
+                                        <button type="submit" class="btn btn-primary"> Continuar</button>
                                         </div>
                                     </form>
                                 </div>

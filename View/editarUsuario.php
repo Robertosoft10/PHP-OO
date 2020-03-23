@@ -160,7 +160,7 @@ if(isset($_GET['userId'])){
 
                                         <div class="form-group col-lg-4 col-xs-4">
                                         <br>
-                                        <button id="barra-pagina" type="submit" class="btn btn-default">Salvar Alterações</button>
+                                        <button  type="submit" class="btn btn-primary">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>
@@ -211,9 +211,9 @@ if(isset($_GET['userId'])){
                                         </td>
                                         <td>
                                         <a href="editarUsuario.php?UserId=<?= $usuario->getUserId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
+                                        <button  class="btn btn-warning btn-xs"><i id="btn-detalhe" class="fa  fa-pencil"></i> </button></a>
                                         <a href="../Controller/excluirUser.php?UserId=<?= $usuario->getUserId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
+                                        <button class="btn btn-danger btn-xs"><i id="btn-detalhe" class="fa  fa-trash"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

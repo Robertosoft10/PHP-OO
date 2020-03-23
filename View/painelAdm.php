@@ -105,8 +105,8 @@ include_once '../Api/secury.php';
             <small id="nome-sist">Bem vindo(a)!  <?php echo $_SESSION['nomeUser'];?>  Sistema Lançamento de Notas</small><br><br>
             <div class="row">
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-Detalhes">
-                        <div class="panel-heading" id="barra-pagina">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
                             <div class="row">
                             <a href="alunos.php">
                                 <div class="col-xs-3">
@@ -126,8 +126,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
                             <div class="row">
                             <a href="professor.php">
                                 <div class="col-xs-3">
@@ -147,8 +147,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
                             <div class="row">
                             <a href="disciplina.php">
                                 <div class="col-xs-3">
@@ -168,8 +168,8 @@ include_once '../Api/secury.php';
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="barra-pagina">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
                             <div class="row">
                             <a href="admUser.php">
                                 <div class="col-xs-3">

@@ -169,7 +169,7 @@ $professorList = $professorDAO->listProfessores();
                                             <input class="form-control" name="nomeProf">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button   id="barra-pagina" type="submit" class="btn btn-default">Salvar Cadastro</button>
+                                        <button   type="submit" class="btn btn-primary">Salvar Cadastro</button>
                                         </div>
                                     </form>
                                 </div>
@@ -205,7 +205,7 @@ $professorList = $professorDAO->listProfessores();
                                         <td><?php echo $professor->getNomeProf();?></td>
                                         <td>
                                         <a href="professorDetalhe.php?profId=<?= $professor->getProfId();?>">
-                                        <button id="barra-pagina" class="btn btn-default btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
+                                        <button class="btn btn-info btn-xs"><i id="btn-detalhe" class="fa  fa-eye"></i> </button></a>
                                     </td>
                                     </tr>
                                     <?php } ?>

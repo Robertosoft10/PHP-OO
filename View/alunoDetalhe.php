@@ -126,6 +126,12 @@ $consulta = mysqli_query($conexao, $sql);
                                     ID: <?php echo $aluno->getAlunoid();?>,
                                     Série: <?php echo $aluno->getSerie();?>,
                                     Turno: <?php echo $aluno->getTurno();?>
+                                    <hr>
+                                    <div class="form-group col-lg-12 col-xs-12">
+                                    <a href="editarAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
+                                    <button   class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
+                                    <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
+                                    <button   class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
                                 </div>
 
                     <!-- /.panel -->
