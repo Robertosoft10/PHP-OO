@@ -42,42 +42,41 @@
             <div class="col-md-4 col-md-offset-4" id="form-login">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">Acessar  Sistema</h3>
+                        <h3 class="panel-title">Cadastrar Usuário</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="Api/login.php" method="post">
+                        <form role="form" action="Controller/salvarUser.php" method="post">
                             <fieldset>
-                            <?php if(isset($_SESSION ['loginVazio'])){?>
-                            <div class="alert alert-danger" role="alert">
-                            <i class="fa fa-warning"></i>  <?php echo $_SESSION ['loginVazio'];?>
-                            </div>
-                            <?php unset($_SESSION ['loginVazio']); } ?>
-
-                            <?php if(isset($_SESSION ['loginIncorreto'])){?>
-                            <div class="alert alert-danger" role="alert">
-                            <i class="fa fa-warning"></i>  <?php echo $_SESSION ['loginIncorreto'];?>
-                            </div>
-                            <?php unset($_SESSION ['loginIncorreto']); } ?>
-
-                            <?php if(isset($_SESSION ['secury'])){?>
-                            <div class="alert alert-danger" role="alert">
-                            <i class="fa fa-warning"></i>  <?php echo $_SESSION ['secury'];?>
-                            </div>
-                            <?php unset($_SESSION ['secury']); } ?>
-
-                            <?php if(isset($_SESSION ['salvo'])){?>
-                            <div class="alert alert-success" role="alert">
-                            <?php echo $_SESSION ['salvo'];?>
-                            </div>
-                            <?php unset($_SESSION ['salvo']); } ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email">
+                                  Nome:
+                                    <input class="form-control"  name="nomeUser" type="text" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Senha" name="password" type="password">
+                                  E-mail:
+                                    <input class="form-control"  name="email" type="email" required="">
+                                </div>
+                                <div class="form-group">
+                                  Senha:
+                                    <input class="form-control" name="password" type="password" required="">
+                                </div>
+                                <div class="form-group">
+                                  Tipo:
+                                    <select class="form-control"  name="tipo" type="text" required="">
+                                    <option></option>
+                                        <option  value="Admin">Usuário Admim</option>
+                                        <option  value="User">Usuário Comum</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                  Status:
+                                    <select class="form-control" name="status" type="text" required="">
+                                      <option></option>
+                                          <option value="1">Ativo</option>
+                                          <option value="0">Inativo</option>
+                                      </select>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button id="btn-login" class="btn btn-default btn-block"><i class="fa fa-sign-in"></i> Entrar</button>
+                                <button id="btn-login" class="btn btn-default btn-block"><i class="fa fa-sign-in"></i> Salvar</button>
                             </fieldset>
                         </form>
                     </div>

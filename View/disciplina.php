@@ -4,7 +4,7 @@ include_once '../Api/secury.php';
 require_once '../Api/classDisciplinaDao.php';
 $disciplinaDAO = new DisciplinaDAO();
 $disciplina = $disciplinaDAO->listDisciplina();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -78,18 +78,18 @@ $disciplina = $disciplinaDAO->listDisciplina();
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
-                        </li>
-                        <li>
-                            <a href="alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
-                        </li>
-                        <li>
-                            <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
-                        </li>
-                        <li>
-                            <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
-                        </li>
+                      <li>
+                          <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
+                      </li>
+                      <li>
+                          <a href="alunos.php"><i class="fa fa-users fa-fw"></i> Alunos</a>
+                      </li>
+                      <li>
+                          <a href="professor.php"><i class="fa fa-users fa-fw"></i> Professores</a>
+                      </li>
+                      <li>
+                          <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
+                      </li>
 
                     </ul>
                 </div>
@@ -100,50 +100,51 @@ $disciplina = $disciplinaDAO->listDisciplina();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Disciplina</h3>
+                    <h3 class="page-header">Disciplinas</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-            <div class="col-lg-12">
-                <!-- alerts cadastro -->
-                <?php if(isset($_SESSION ['disciNaoSalvo'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-warning"></i>  <?php echo $_SESSION ['disciNaoSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['disciNaoSalvo']); } ?>
+              <!-- alerts cadastro -->
+              <?php if(isset($_SESSION ['disciNaoSalvo'])){?>
+              <div class="alert alert-danger" role="alert">
+              <i class="fa fa-warning"></i>  <?php echo $_SESSION ['disciNaoSalvo'];?>
+              </div>
+              <?php unset($_SESSION ['disciNaoSalvo']); } ?>
 
-                <?php if(isset($_SESSION ['disciSalvo'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciSalvo'];?>
-                </div>
-                <?php unset($_SESSION ['disciSalvo']); } ?>
+              <?php if(isset($_SESSION ['disciSalvo'])){?>
+              <div class="alert alert-success" role="alert">
+              <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciSalvo'];?>
+              </div>
+              <?php unset($_SESSION ['disciSalvo']); } ?>
 
-                <!-- alert update -->
-                <?php if(isset($_SESSION ['disciNaoAtualizado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciNaoAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['disciNaoAtualizado']); } ?>
+              <!-- alert update -->
+              <?php if(isset($_SESSION ['disciNaoAtualizado'])){?>
+              <div class="alert alert-danger" role="alert">
+              <i class="fa fa-warning"></i>  <?php echo $_SESSION ['disciNaoAtualizado'];?>
+              </div>
+              <?php unset($_SESSION ['disciNaoAtualizado']); } ?>
 
-                <?php if(isset($_SESSION ['disciAtualizado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciAtualizado'];?>
-                </div>
-                <?php unset($_SESSION ['disciAtualizado']); } ?>
-                 <!-- alert delete -->
-                 <?php if(isset($_SESSION ['discioNaoDeletado'])){?>
-                <div class="alert alert-danger" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['discioNaoDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['discioNaoDeletado']); } ?>
+              <?php if(isset($_SESSION ['disciAtualizado'])){?>
+              <div class="alert alert-success" role="alert">
+              <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciAtualizado'];?>
+              </div>
+              <?php unset($_SESSION ['disciAtualizado']); } ?>
+               <!-- alert delete -->
+               <?php if(isset($_SESSION ['discioNaoDeletado'])){?>
+              <div class="alert alert-danger" role="alert">
+              <i class="fa fa-warning"></i>  <?php echo $_SESSION ['discioNaoDeletado'];?>
+              </div>
+              <?php unset($_SESSION ['discioNaoDeletado']); } ?>
 
-                <?php if(isset($_SESSION ['disciDeletado'])){?>
-                <div class="alert alert-success" role="alert">
-                <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciDeletado'];?>
-                </div>
-                <?php unset($_SESSION ['disciDeletado']); } ?>
+              <?php if(isset($_SESSION ['disciDeletado'])){?>
+              <div class="alert alert-success" role="alert">
+              <i class="fa fa-check"></i>  <?php echo $_SESSION ['disciDeletado'];?>
+              </div>
+              <?php unset($_SESSION ['disciDeletado']); } ?>
+
+            <div class="col-lg-12 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading"    id="barra-pagina">
                             Cadastrar nova Disciplina
@@ -152,23 +153,25 @@ $disciplina = $disciplinaDAO->listDisciplina();
                             <div class="row">
                                 <div class="col-lg-12">
                                 <form role="form" action="../Controller/inserirDisciplina.php" method="post">
-                                        <div class="form-group col-lg-6 col-xs-6">
+                                        <div class="form-group col-lg-12 col-xs-12">
                                         <label>Disciplina: *</label>
                                         <input class="form-control"  name="disciplina">
                                         </div>
                                         <div class="form-group col-lg-12 col-xs-12">
-                                        <button  type="submit" class="btn btn-primary">Salvar Cadastro</button>
+                                        <button  type="submit" class="btn btn-primary col-xs-3">Salvar Cadastro</button>
                                         </div>
                                     </form>
                                 </div>
                         </div>
+
                         <!-- /.panel-footer -->
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
-            </div>
+
+        </div>
             <!-- /.row -->
             <div class="row">
             <div class="col-lg-12">

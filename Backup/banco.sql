@@ -13,6 +13,11 @@ CREATE TABLE disciplinas(
   	disciId int not null auto_increment primary key,
   	disciplina varchar(100)
 );
+CREATE TABLE medias(
+  	mediaId int not null auto_increment primary key,
+  	mediaAp varchar(20),
+    minimoRec varchar(20)
+);
 CREATE TABLE alunos(
   alunoId int not null auto_increment primary key,
   nomeAluno varchar(255),

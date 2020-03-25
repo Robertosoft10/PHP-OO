@@ -1,9 +1,10 @@
 /*index */
 #btn-login{
-
+  background-color: #5a2988;
+  color: #ffffff;
 }
 #barra-login{
-    background-color: #5a2988;
+    background-color: #337ab7;
     height: 250px;
     width: 100%;
     text-align: center;
@@ -62,8 +63,6 @@ color: #ffffff;
 }
 #btn-modal-nota{
   width: 30%;
-  background-color: #5a2988;
-  color: #ffffff;
 }
 #modal-tamanho{
   margin-top: 10%;

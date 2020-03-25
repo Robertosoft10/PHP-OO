@@ -28,7 +28,7 @@ $nota2 = $_POST['nota'];
   $_SESSION['notaSalva'] = "Cadastro efetuado com sucesso!";
 }
 else if($bimestre == 'b3'){
-$aluno = $_PEST['aluno'];
+$aluno = $_POST['aluno'];
 $professor = $_GET['profId'];
 $disciplina = $_POST['disciplina'];
 $nota3 = $_POST['nota'];

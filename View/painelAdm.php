@@ -79,10 +79,10 @@ include_once '../Api/secury.php';
                             <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
                         </li>
                         <li>
-                            <a href="alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
+                            <a href="alunos.php"><i class="fa fa-users fa-fw"></i> Alunos</a>
                         </li>
                         <li>
-                            <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
+                            <a href="professor.php"><i class="fa fa-users fa-fw"></i> Professores</a>
                         </li>
                         <li>
                             <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
@@ -110,7 +110,7 @@ include_once '../Api/secury.php';
                             <div class="row">
                             <a href="alunos.php">
                                 <div class="col-xs-3">
-                                    <i  id="btn-link" class="fa fa-user fa-3x"></i>
+                                    <i  id="btn-link" class="fa fa-users fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div id="btn-painel" class="huge">Alunos</div>
@@ -118,7 +118,7 @@ include_once '../Api/secury.php';
                             </div>
                         </div>
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
+                                <span class="pull-left">Cadastro e Lista</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -131,7 +131,7 @@ include_once '../Api/secury.php';
                             <div class="row">
                             <a href="professor.php">
                                 <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-user fa-3x"></i>
+                                <i  id="btn-link" class="fa fa-users fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div id="btn-painel" class="huge">Professores</div>
@@ -139,7 +139,7 @@ include_once '../Api/secury.php';
                             </div>
                         </div>
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
+                                <span class="pull-left">Cadastro e Lista</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -152,7 +152,7 @@ include_once '../Api/secury.php';
                             <div class="row">
                             <a href="disciplina.php">
                                 <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-users fa-3x"></i>
+                                <i  id="btn-link" class="fa fa-book fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div id="btn-painel" class="huge">Disciplinas</div>
@@ -160,7 +160,7 @@ include_once '../Api/secury.php';
                             </div>
                         </div>
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
+                                <span class="pull-left">Média Escolar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -173,7 +173,7 @@ include_once '../Api/secury.php';
                             <div class="row">
                             <a href="admUser.php">
                                 <div class="col-xs-3">
-                                <i  id="btn-link" class="fa fa-file-text-o fa-3x"></i>
+                                <i  id="btn-link" class="fa fa-user fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div id="btn-painel" class="huge">Usuários</div>
@@ -181,8 +181,8 @@ include_once '../Api/secury.php';
                             </div>
                         </div>
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhes</span>
-                                <span class="pull-right"><i class="fa fa fa-file-text-o"></i></span>
+                                <span class="pull-left">User Sistema</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>

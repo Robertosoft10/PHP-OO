@@ -86,18 +86,18 @@ $consulta = mysqli_query($conexao, $sql);
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
-                        </li>
-                        <li>
-                            <a href="alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
-                        </li>
-                        <li>
-                            <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
-                        </li>
-                        <li>
-                            <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
-                        </li>
+                      <li>
+                          <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
+                      </li>
+                      <li>
+                          <a href="alunos.php"><i class="fa fa-users fa-fw"></i> Alunos</a>
+                      </li>
+                      <li>
+                          <a href="professor.php"><i class="fa fa-users fa-fw"></i> Professores</a>
+                      </li>
+                      <li>
+                          <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
+                      </li>
 
                     </ul>
                 </div>
@@ -132,7 +132,7 @@ $consulta = mysqli_query($conexao, $sql);
                                     <button   class="btn btn-warning"><i class="fa fa-pencil"></i> Editar </button></a>
                                     <a href="../Controller/excluirAluno.php?alunoId=<?= $aluno->getAlunoId();?>">
                                     <button   class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</button></a>
-                                </div>
+                                  </div>
 
                     <!-- /.panel -->
                 </div>
@@ -174,11 +174,11 @@ $consulta = mysqli_query($conexao, $sql);
                                         <td><?php echo $nota['nota4'];?></td>
                                         <?php $mdeiaS = $nota['nota1'] + $nota['nota2'] + $nota['nota3'] + $nota['nota4'];?>
                                         <td><?php echo $mdeiaS;?></td>
-                                        <?php $mdeiaF = ($nota['nota1'] + $nota['nota2'] + $nota['nota3'] + $nota['nota4']) / 4;?>
-                                        <td><?php echo $mdeiaF;?></td>
+                                        <?php $medeiaF = ($nota['nota1'] + $nota['nota2'] + $nota['nota3'] + $nota['nota4']) / 4;?>
+                                        <td><?php echo $medeiaF;?></td>
                                           <td>
                                             <a href="../Controller/excluirNota.php?notaId=<?= $nota['notaId'];?>">
-                                            <button id="barra-pagina" class="btn btn-default btn-sm"><i  class="fa  fa-trash"></i> </button></a>
+                                            <button class="btn btn-danger btn-sm"><i  class="fa  fa-trash"></i> </button></a>
                                           </td>
                                     </tr>
                                     <?php } ?>

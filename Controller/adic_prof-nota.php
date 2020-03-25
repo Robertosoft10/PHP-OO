@@ -151,7 +151,7 @@ if(isset($_GET['profId'])){
                         <div class="modal-body text-center">
                           <h4><?php echo $_SESSION['profeadd'];?></h4>
                           <a href="../View/professorDetalhe.php?profId=<?= $professor->getProfId();?>"
-                          <button id="btn-modal-nota" type="button" class="btn btn-default">
+                          <button id="btn-modal-nota" type="button" class="btn btn-primary">
                           Ok</button></a>
                         </div>
                         <div class="modal-footer">

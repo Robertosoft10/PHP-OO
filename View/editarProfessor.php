@@ -82,18 +82,18 @@ if(isset($_GET['profId'])){
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
-                        </li>
-                        <li>
-                            <a href="alunos.php"><i class="fa fa-user fa-fw"></i> Alunos</a>
-                        </li>
-                        <li>
-                            <a href="professor.php"><i class="fa fa-user fa-fw"></i> Professores</a>
-                        </li>
-                        <li>
-                            <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
-                        </li>
+                      <li>
+                          <a href="painelAdm.php"><i class="fa fa-dashboard fa-fw"></i> Painel Admin</a>
+                      </li>
+                      <li>
+                          <a href="alunos.php"><i class="fa fa-users fa-fw"></i> Alunos</a>
+                      </li>
+                      <li>
+                          <a href="professor.php"><i class="fa fa-users fa-fw"></i> Professores</a>
+                      </li>
+                      <li>
+                          <a href="../Controller/backupDb.php"><i class="fa fa-database fa-fw"></i> Fazer Backup</a>
+                      </li>
 
                     </ul>
                 </div>
